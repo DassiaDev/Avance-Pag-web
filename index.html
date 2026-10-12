@@ -1,0 +1,3964 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MobileZone | Venta de Celulares</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- CONTENEDOR DE LA TIENDA PÚBLICA -->
+    <div id="store-view">
+
+    <!-- BARRA SUPERIOR -->
+    <div class="top-bar">
+        Envío gratis en compras superiores a $5,000 MXN
+    </div>
+
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <div class="logo">
+            <span>Mobile</span>Zone
+        </div>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#productos">Celulares</a>
+            <a href="#marcas">Marcas</a>
+            <a href="#ofertas">Ofertas</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <button class="search-btn" onclick="openSearchModal()" title="Buscar productos en el catálogo">
+                <i class="fa-solid fa-magnifying-glass"></i> Buscar
+            </button>
+
+            <!-- Botón Cuenta de Cliente / Iniciar Sesión -->
+            <button class="customer-auth-btn" id="customerNavBtn" onclick="handleCustomerNavClick()" title="Cuenta de Cliente">
+                <i class="fa-solid fa-user"></i> <span id="customerNavLabel">Iniciar Sesión</span>
+            </button>
+
+            <button class="cart-btn" onclick="openCartDrawer()" title="Ver carrito de compras">
+                <i class="fa-solid fa-bag-shopping"></i> Carrito
+                <span class="cart-count">0</span>
+            </button>
+
+            <button class="admin-toggle-nav-btn" onclick="handleAdminAccessClick()" title="Portal Corporativo y de Colaboradores">
+                <i class="fa-solid fa-shield-halved"></i> Panel Admin
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+    <main>
+
+        <section class="hero" id="inicio">
+
+            <div class="hero-content">
+
+                <p class="hero-small">
+                    NUEVA GENERACIÓN
+                </p>
+
+                <h1>
+                    Tecnología que<br>
+                    se adapta a ti.
+                </h1>
+
+                <p class="hero-text">
+                    Encuentra smartphones de las mejores marcas,
+                    con tecnología actual, excelentes precios y
+                    opciones para todos los estilos.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#productos" class="btn-primary">
+                        Ver celulares
+                    </a>
+
+                    <a href="#ofertas" class="btn-secondary">
+                        Ver ofertas
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1000&q=90"
+                    alt="Smartphone moderno"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- CATEGORÍAS -->
+        <section class="categories">
+
+            <div class="section-title">
+                <p>EXPLORA</p>
+                <h2>Encuentra tu próximo celular</h2>
+            </div>
+
+
+            <div class="category-grid">
+
+                <a href="#productos" class="category-card" onclick="filterCatalogCategory('Smartphones')">
+                    <div class="category-icon">01</div>
+                    <h3>Smartphones</h3>
+                    <p>Los modelos más recientes</p>
+                </a>
+
+                <a href="#ofertas" class="category-card">
+                    <div class="category-icon">02</div>
+                    <h3>Ofertas</h3>
+                    <p>Precios especiales</p>
+                </a>
+
+                <a href="#marcas" class="category-card">
+                    <div class="category-icon">03</div>
+                    <h3>Marcas</h3>
+                    <p>Apple, Samsung y más</p>
+                </a>
+
+                <a href="#productos" class="category-card" onclick="filterCatalogCategory('Accesorios')">
+                    <div class="category-icon">04</div>
+                    <h3>Accesorios</h3>
+                    <p>Complementa tu equipo</p>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCTOS -->
+        <section class="products-section" id="productos">
+
+            <div class="products-header">
+
+                <div>
+                    <p>CATÁLOGO EN TIEMPO REAL</p>
+                    <h2>Celulares y Equipos</h2>
+                    <!-- Chips de filtrado interactivo por marca -->
+                    <div class="catalog-filter-bar" id="catalogFilterChips">
+                        <button class="catalog-filter-chip active" onclick="filterCatalogBrand('ALL', this)">Todos</button>
+                        <button class="catalog-filter-chip" onclick="filterCatalogBrand('Apple', this)">Apple</button>
+                        <button class="catalog-filter-chip" onclick="filterCatalogBrand('Samsung', this)">Samsung</button>
+                        <button class="catalog-filter-chip" onclick="filterCatalogBrand('Xiaomi', this)">Xiaomi</button>
+                        <button class="catalog-filter-chip" onclick="filterCatalogBrand('Google', this)">Google</button>
+                        <button class="catalog-filter-chip" onclick="filterCatalogBrand('OnePlus', this)">OnePlus</button>
+                        <button class="catalog-filter-chip" onclick="filterCatalogBrand('Motorola', this)">Motorola</button>
+                        <button class="catalog-filter-chip" onclick="filterCatalogBrand('Accesorios', this)">Accesorios</button>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 8px; align-items: center; margin-top: 15px;">
+                    <select id="catalogSortSelect" class="admin-select-filter" onchange="sortStoreCatalog(this.value)" style="padding: 9px 14px; font-size: 13px;">
+                        <option value="featured">Destacados</option>
+                        <option value="price-asc">Precio: Menor a Mayor</option>
+                        <option value="price-desc">Precio: Mayor a Menor</option>
+                        <option value="name-asc">Nombre: A - Z</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+            <div class="products-grid" id="storeProductsGrid">
+                <!-- Se sincroniza y renderiza dinámicamente desde el inventario de MobileZone -->
+            </div>
+
+        </section>
+
+
+        <!-- OFERTA GRANDE -->
+        <section class="offer" id="ofertas">
+
+            <div class="offer-content">
+
+                <p>
+                    OFERTA ESPECIAL
+                </p>
+
+                <h2>
+                    Renueva tu celular
+                    sin complicaciones.
+                </h2>
+
+                <p>
+                    Aprovecha descuentos especiales en modelos
+                    seleccionados durante esta temporada.
+                </p>
+
+                <a href="#productos" class="btn-white">
+                    Comprar ahora
+                </a>
+
+            </div>
+
+            <div class="offer-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1000&q=90"
+                    alt="Celular moderno"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- MARCAS -->
+        <section class="brands" id="marcas">
+
+            <div class="section-title center">
+
+                <p>MARCAS</p>
+
+                <h2>
+                    Tecnología que conoces
+                </h2>
+
+            </div>
+
+
+            <div class="brands-grid">
+
+                <div onclick="filterCatalogCategory('Apple')" title="Ver celulares Apple">APPLE</div>
+                <div onclick="filterCatalogCategory('Samsung')" title="Ver celulares Samsung">SAMSUNG</div>
+                <div onclick="filterCatalogCategory('Xiaomi')" title="Ver celulares Xiaomi">XIAOMI</div>
+                <div onclick="filterCatalogCategory('Google')" title="Ver celulares Google">GOOGLE</div>
+                <div onclick="filterCatalogCategory('OnePlus')" title="Ver celulares OnePlus">ONEPLUS</div>
+                <div onclick="filterCatalogCategory('Motorola')" title="Ver celulares Motorola">MOTOROLA</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BENEFICIOS -->
+        <section class="benefits">
+
+            <div class="benefit">
+
+                <h3>
+                    Envíos seguros
+                </h3>
+
+                <p>
+                    Recibe tu pedido directamente en tu domicilio.
+                </p>
+
+            </div>
+
+            <div class="benefit">
+
+                <h3>
+                    Compra protegida
+                </h3>
+
+                <p>
+                    Protegemos tus datos durante todo el proceso.
+                </p>
+
+            </div>
+
+            <div class="benefit">
+
+                <h3>
+                    Equipos originales
+                </h3>
+
+                <p>
+                    Productos nuevos y completamente originales.
+                </p>
+
+            </div>
+
+            <div class="benefit">
+
+                <h3>
+                    Soporte
+                </h3>
+
+                <p>
+                    Estamos disponibles para ayudarte con tu compra.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <div class="logo">
+                    <span>Mobile</span>Zone
+                </div>
+
+                <p>
+                    Tecnología para todos.
+                    Encuentra el smartphone que necesitas.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Tienda
+                </h4>
+
+                <a href="#productos">
+                    Celulares
+                </a>
+
+                <a href="#ofertas">
+                    Ofertas
+                </a>
+
+                <a href="#marcas">
+                    Marcas
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Ayuda
+                </h4>
+
+                <a href="#">
+                    Preguntas frecuentes
+                </a>
+
+                <a href="#">
+                    Envíos
+                </a>
+
+                <a href="#">
+                    Garantía
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Contacto
+                </h4>
+
+                <p>
+                    contacto@mobilezone.com
+                </p>
+
+                <p>
+                    +52 441 249 0354
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 MobileZone. Todos los derechos reservados. &nbsp;·&nbsp; <a href="javascript:void(0)" onclick="handleAdminAccessClick()" style="color: #888; text-decoration: underline;">Portal de Colaboradores</a>
+
+        </div>
+
+    </footer>
+
+    </div><!-- FIN DE #store-view -->
+
+
+    <!-- ========================================================
+         VISTA DEL PANEL DE ADMINISTRACIÓN (INTEGRADO EN INDEX.HTML)
+         ======================================================== -->
+    <div id="admin-view">
+
+        <div class="admin-layout">
+
+            <!-- SIDEBAR MINIMALISTA MOBILEZONE -->
+            <aside class="admin-sidebar">
+
+                <div class="admin-sidebar-header">
+                    <div class="logo">
+                        <span>Mobile</span>Zone
+                    </div>
+                    <span class="admin-portal-badge">ADMIN</span>
+                </div>
+
+                <!-- Perfil Activo -->
+                <div class="admin-user-card">
+                    <div class="admin-avatar" id="sidebarAvatar">CM</div>
+                    <div class="admin-user-info">
+                        <div class="admin-user-name" id="sidebarUserName">Carlos Mendoza</div>
+                        <span class="admin-role-badge role-admin" id="sidebarUserRoleBadge">
+                            <i class="fa-solid fa-shield-halved"></i> ADMIN
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Navegación -->
+                <nav class="admin-sidebar-nav">
+                    <div class="admin-nav-heading">Principal</div>
+
+                    <button class="admin-nav-btn active" data-view="view-dashboard">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Vista General</span>
+                    </button>
+
+                    <button class="admin-nav-btn" data-view="view-inventory">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                        <span>Control de Inventario</span>
+                        <span class="admin-badge-count" id="sidebarLowStockBadge" style="display:none;">0</span>
+                    </button>
+
+                    <button class="admin-nav-btn" data-view="view-sales">
+                        <i class="fa-solid fa-cash-register"></i>
+                        <span>Control de Ventas</span>
+                    </button>
+
+                    <button class="admin-nav-btn" data-view="view-statistics">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Estadísticas de Venta</span>
+                    </button>
+
+                    <div class="admin-nav-heading role-admin-only">Administración</div>
+
+                    <button class="admin-nav-btn role-admin-only" data-view="view-users">
+                        <i class="fa-solid fa-users-gear"></i>
+                        <span>Perfiles y Roles</span>
+                    </button>
+
+                    <button class="admin-nav-btn" data-view="view-branches">
+                        <i class="fa-solid fa-store"></i>
+                        <span>Sucursales</span>
+                    </button>
+                </nav>
+
+                <!-- Pie del sidebar -->
+                <div class="admin-sidebar-footer">
+                    <button class="btn-back-to-store" onclick="switchToStoreView()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Volver a la Tienda</span>
+                    </button>
+                </div>
+
+            </aside>
+
+
+            <!-- CONTENIDO PRINCIPAL ADMIN -->
+            <main class="admin-main">
+
+                <!-- Header Superior -->
+                <header class="admin-top-header">
+                    <div class="admin-header-left">
+                        <button class="admin-mobile-toggle" id="adminMobileBtn">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+
+                        <div class="admin-branch-select-box">
+                            <label for="globalBranchSelect"><i class="fa-solid fa-location-dot"></i> Sucursal:</label>
+                            <select id="globalBranchSelect">
+                                <option value="ALL">Todas las Sucursales</option>
+                                <option value="Sucursal Centro">Sucursal Centro</option>
+                                <option value="Plaza Norte">Plaza Norte</option>
+                                <option value="Galerías Sur">Galerías Sur</option>
+                                <option value="Tienda Online">Tienda Online</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="admin-header-right">
+                        <!-- Sesión Corporativa Activa -->
+                        <div class="admin-session-badge" id="adminHeaderSessionBadge">
+                            <span class="session-live-dot"><i class="fa-solid fa-circle"></i> En línea</span>
+                            <div class="session-info-compact">
+                                <span class="session-user-name" id="topHeaderUserName">Carlos Mendoza</span>
+                                <span class="session-role-pill" id="topHeaderUserRole">ADMIN</span>
+                            </div>
+                            <button type="button" class="btn-switch-user" onclick="openAdminSwitchModal()" title="Cambiar perfil autenticado con contraseña">
+                                <i class="fa-solid fa-arrows-rotate"></i> Cambiar Rol
+                            </button>
+                        </div>
+
+                        <button class="btn-mz-logout" onclick="logoutAdmin()" title="Cerrar sesión corporativa">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
+
+                        <button class="admin-return-store-btn" onclick="switchToStoreView()" title="Ir a la tienda pública">
+                            <i class="fa-solid fa-bag-shopping"></i> Ver Tienda
+                        </button>
+                    </div>
+                </header>
+
+
+                <!-- CUERPO DE LAS SECCIONES -->
+                <div class="admin-content-body">
+
+                    <!-- SECCIÓN 1: VISTA GENERAL -->
+                    <section id="view-dashboard" class="admin-view-panel active">
+                        <div class="admin-section-header">
+                            <div class="admin-header-title">
+                                <p>PANEL DE CONTROL</p>
+                                <h1>Vista General</h1>
+                            </div>
+                            <div>
+                                <button class="btn-mz btn-mz-primary" onclick="openNewSaleModal()">
+                                    <i class="fa-solid fa-plus"></i> Nueva Venta
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="admin-kpi-grid">
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Ventas Hoy</p>
+                                    <h3 id="dashKpiTotalSales">$0</h3>
+                                    <span class="admin-kpi-sub"><i class="fa-solid fa-arrow-trend-up"></i> +14.8% vs ayer</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Órdenes Hoy</p>
+                                    <h3 id="dashKpiTotalOrders">0</h3>
+                                    <span class="admin-kpi-sub"><i class="fa-solid fa-cart-shopping"></i> Transacciones</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-receipt"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Alertas de Stock</p>
+                                    <h3 id="dashKpiLowStock">0</h3>
+                                    <span class="admin-kpi-sub negative"><i class="fa-solid fa-triangle-exclamation"></i> Requiere surtido</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-boxes-packing"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Sucursales</p>
+                                    <h3>4 / 4</h3>
+                                    <span class="admin-kpi-sub"><i class="fa-solid fa-check"></i> En operación</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-building-circle-check"></i></div>
+                            </div>
+                        </div>
+
+                        <!-- 2 Columnas: Ventas Recientes y Alertas de Stock -->
+                        <div class="admin-charts-grid">
+                            <div class="admin-table-container">
+                                <div class="admin-table-header">
+                                    <h3>Últimas Ventas Registradas</h3>
+                                    <button class="btn-mz btn-mz-secondary btn-mz-sm" onclick="document.querySelector('[data-view=view-sales]').click()">Ver Todas</button>
+                                </div>
+                                <div style="overflow-x: auto;">
+                                    <table class="admin-data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Folio</th>
+                                                <th>Cliente</th>
+                                                <th>Sucursal</th>
+                                                <th>Total</th>
+                                                <th>Estado</th>
+                                                <th>Recibo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="dashboardRecentOrdersBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="admin-chart-box">
+                                <div class="admin-chart-top">
+                                    <div>
+                                        <h3>Stock Crítico</h3>
+                                        <p>Modelos próximos a agotarse</p>
+                                    </div>
+                                    <span class="mz-badge mz-badge-danger">Alerta</span>
+                                </div>
+                                <div class="admin-branch-list" id="dashboardLowStockList"></div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- SECCIÓN 2: CONTROL DE INVENTARIO -->
+                    <section id="view-inventory" class="admin-view-panel">
+                        <div class="admin-section-header">
+                            <div class="admin-header-title">
+                                <p>GESTIÓN DE EQUIPOS</p>
+                                <h1>Control de Inventario</h1>
+                            </div>
+                            <div>
+                                <button class="btn-mz btn-mz-primary" onclick="openAddProductModal()">
+                                    <i class="fa-solid fa-plus"></i> Registrar Producto
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="admin-kpi-grid">
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Modelos Activos</p>
+                                    <h3 id="kpiInvTotal">0</h3>
+                                    <span class="admin-kpi-sub neutral">En catálogo</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Unidades Físicas</p>
+                                    <h3 id="kpiInvStock">0 u.</h3>
+                                    <span class="admin-kpi-sub">En tiendas</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-cubes"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Stock Bajo (&le; 5)</p>
+                                    <h3 id="kpiInvLow">0</h3>
+                                    <span class="admin-kpi-sub negative">Críticos</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card role-admin-only">
+                                <div class="admin-kpi-meta">
+                                    <p>Valor de Inventario</p>
+                                    <h3 id="kpiInvValue">$0</h3>
+                                    <span class="admin-kpi-sub">Precio catálogo</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-vault"></i></div>
+                            </div>
+                        </div>
+
+                        <!-- Filtros -->
+                        <div class="admin-filter-bar">
+                            <div class="admin-filter-left">
+                                <div class="admin-search-wrapper">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <input type="text" id="invSearchInput" class="admin-input-search" placeholder="Buscar por modelo, SKU o marca...">
+                                </div>
+
+                                <select id="invCategorySelect" class="admin-select-filter">
+                                    <option value="ALL">Todas las Categorías</option>
+                                    <option value="Smartphones">Smartphones</option>
+                                    <option value="Accesorios">Accesorios</option>
+                                    <option value="Audio">Audio</option>
+                                </select>
+
+                                <select id="invStatusSelect" class="admin-select-filter">
+                                    <option value="ALL">Todos los Estados</option>
+                                    <option value="NORMAL">Stock Saludable</option>
+                                    <option value="LOW">Stock Crítico (&le; mín)</option>
+                                    <option value="OUT">Agotados (0 u.)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <button class="btn-mz btn-mz-secondary btn-mz-sm" onclick="renderInventory()">
+                                    <i class="fa-solid fa-arrows-rotate"></i> Actualizar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Tabla -->
+                        <div class="admin-table-container">
+                            <div style="overflow-x: auto;">
+                                <table class="admin-data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Celular / Producto</th>
+                                            <th>SKU</th>
+                                            <th>Sucursal</th>
+                                            <th>Estado Stock</th>
+                                            <th>Existencias</th>
+                                            <th>Precio Venta</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="inventoryTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- SECCIÓN 3: CONTROL DE VENTAS -->
+                    <section id="view-sales" class="admin-view-panel">
+                        <div class="admin-section-header">
+                            <div class="admin-header-title">
+                                <p>REGISTRO COMERCIAL</p>
+                                <h1>Control de Ventas y POS</h1>
+                            </div>
+                            <div style="display:flex; gap:0.5rem;">
+                                <button class="btn-mz btn-mz-secondary" onclick="exportSalesToCSV()">
+                                    <i class="fa-solid fa-file-csv"></i> Exportar CSV
+                                </button>
+                                <button class="btn-mz btn-mz-primary" onclick="openNewSaleModal()">
+                                    <i class="fa-solid fa-cash-register"></i> Registrar Venta
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="admin-kpi-grid">
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Ingresos del Mes</p>
+                                    <h3 id="kpiSalesRevenue">$0</h3>
+                                    <span class="admin-kpi-sub">Concretadas</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-chart-column"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Ventas Cerradas</p>
+                                    <h3 id="kpiSalesCount">0</h3>
+                                    <span class="admin-kpi-sub">Transacciones</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-receipt"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Ticket Promedio</p>
+                                    <h3 id="kpiSalesAvg">$0</h3>
+                                    <span class="admin-kpi-sub neutral">Por transacción</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-calculator"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Ventas Pendientes</p>
+                                    <h3 id="kpiSalesPending">0</h3>
+                                    <span class="admin-kpi-sub negative">Por liquidar</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-clock"></i></div>
+                            </div>
+                        </div>
+
+                        <!-- Filtros Ventas -->
+                        <div class="admin-filter-bar">
+                            <div class="admin-filter-left">
+                                <div class="admin-search-wrapper">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <input type="text" id="salesSearchInput" class="admin-input-search" placeholder="Buscar por folio, cliente o vendedor...">
+                                </div>
+
+                                <select id="salesBranchSelect" class="admin-select-filter">
+                                    <option value="ALL">Todas las Sucursales</option>
+                                    <option value="Sucursal Centro">Sucursal Centro</option>
+                                    <option value="Plaza Norte">Plaza Norte</option>
+                                    <option value="Galerías Sur">Galerías Sur</option>
+                                    <option value="Tienda Online">Tienda Online</option>
+                                </select>
+
+                                <select id="salesStatusSelect" class="admin-select-filter">
+                                    <option value="ALL">Todos los Estados</option>
+                                    <option value="Completada">Completada</option>
+                                    <option value="Pendiente">Pendiente</option>
+                                    <option value="Cancelada">Cancelada</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <button class="btn-mz btn-mz-secondary btn-mz-sm" onclick="renderSales()">
+                                    <i class="fa-solid fa-rotate"></i> Refrescar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Tabla Ventas -->
+                        <div class="admin-table-container">
+                            <div style="overflow-x: auto;">
+                                <table class="admin-data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Folio</th>
+                                            <th>Fecha y Hora</th>
+                                            <th>Cliente</th>
+                                            <th>Sucursal</th>
+                                            <th>Vendedor</th>
+                                            <th>Método Pago</th>
+                                            <th>Total</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="salesTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- SECCIÓN 4: ESTADÍSTICAS DE VENTA POR CONSULTA -->
+                    <section id="view-statistics" class="admin-view-panel">
+                        <!-- Banner de Bloqueo por Rol -->
+                        <div class="role-restricted-banner" id="statsRestrictedBanner" style="display: none;">
+                            <i class="fa-solid fa-lock"></i>
+                            <h2>Módulo Financiero Restringido</h2>
+                            <p>Tu rol activo actualmente es <strong class="lbl-current-role">VENDEDOR</strong>. Este módulo contiene balances financieros, curvas de facturación y utilidades netas reservadas para la dirección y usuarios con rol <strong>ADMINISTRADOR</strong>.</p>
+                            <button class="btn-mz btn-mz-primary" onclick="setRoleDemo('ADMIN')">
+                                <i class="fa-solid fa-shield-halved"></i> Cambiar a Perfil ADMINISTRADOR
+                            </button>
+                        </div>
+
+                        <div id="statsFullContent">
+                        <div class="admin-section-header">
+                            <div class="admin-header-title">
+                                <p>ANALÍTICA DE NEGOCIO</p>
+                                <h1>Estadísticas de Venta</h1>
+                            </div>
+                            <div>
+                                <button class="btn-mz btn-mz-secondary" onclick="window.print()">
+                                    <i class="fa-solid fa-print"></i> Imprimir Reporte
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- BARRA DE CONSULTAS PARAMÉTRICAS (DIARIA, SEMANAL, ETC) -->
+                        <div class="admin-filter-bar">
+                            <div class="admin-filter-left">
+                                <span style="font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:#555;">
+                                    <i class="fa-solid fa-calendar"></i> Periodo:
+                                </span>
+
+                                <div class="admin-period-tabs">
+                                    <button class="admin-period-btn" data-period="daily">Diaria</button>
+                                    <button class="admin-period-btn" data-period="weekly">Semanal</button>
+                                    <button class="admin-period-btn active" data-period="monthly">Mensual</button>
+                                    <button class="admin-period-btn" data-period="annual">Anual</button>
+                                </div>
+
+                                <span style="font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:#555; margin-left:10px;">
+                                    <i class="fa-solid fa-store"></i> Sucursal:
+                                </span>
+
+                                <select id="statBranchSelect" class="admin-select-filter">
+                                    <option value="ALL">Todas las Sucursales</option>
+                                    <option value="Sucursal Centro">Sucursal Centro</option>
+                                    <option value="Plaza Norte">Plaza Norte</option>
+                                    <option value="Galerías Sur">Galerías Sur</option>
+                                    <option value="Tienda Online">Tienda Online</option>
+                                </select>
+                            </div>
+
+                            <div id="statPeriodLabel" style="font-size:12px; font-weight:700; color:#111;">
+                                Consulta: Mensual · Todas las Sucursales
+                            </div>
+                        </div>
+
+                        <!-- KPIs de Consulta -->
+                        <div class="admin-kpi-grid">
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Ingresos en Consulta</p>
+                                    <h3 id="statTotalRev">$0</h3>
+                                    <span class="admin-kpi-sub"><i class="fa-solid fa-arrow-trend-up"></i> Ventas cerradas</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Transacciones</p>
+                                    <h3 id="statOrdersCount">0</h3>
+                                    <span class="admin-kpi-sub neutral">Operaciones</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card">
+                                <div class="admin-kpi-meta">
+                                    <p>Ticket Promedio</p>
+                                    <h3 id="statAvgTicket">$0</h3>
+                                    <span class="admin-kpi-sub">Por cliente</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-tag"></i></div>
+                            </div>
+
+                            <div class="admin-kpi-card role-admin-only">
+                                <div class="admin-kpi-meta">
+                                    <p>Margen Estimado</p>
+                                    <h3 id="statEstMargin">$0</h3>
+                                    <span class="admin-kpi-sub">Utilidad neta</span>
+                                </div>
+                                <div class="admin-kpi-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                            </div>
+                        </div>
+
+                        <!-- Gráficas Chart.js -->
+                        <div class="admin-charts-grid">
+                            <div class="admin-chart-box">
+                                <div class="admin-chart-top">
+                                    <div>
+                                        <h3>Evolución de Ingresos</h3>
+                                        <p>Tendencia temporal de ventas</p>
+                                    </div>
+                                    <span class="mz-badge mz-badge-dark">Dinámico</span>
+                                </div>
+                                <div class="admin-chart-area">
+                                    <canvas id="chartSalesEvolution"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="admin-chart-box">
+                                <div class="admin-chart-top">
+                                    <div>
+                                        <h3>Ventas por Sucursal</h3>
+                                        <p>Participación porcentual</p>
+                                    </div>
+                                </div>
+                                <div class="admin-chart-area">
+                                    <canvas id="chartBranchDistribution"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Marcas y Desglose -->
+                        <div class="admin-charts-grid">
+                            <div class="admin-chart-box">
+                                <div class="admin-chart-top">
+                                    <div>
+                                        <h3>Marcas más Vendidas</h3>
+                                        <p>Unidades comercializadas</p>
+                                    </div>
+                                </div>
+                                <div class="admin-chart-area">
+                                    <canvas id="chartTopCategories"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="admin-chart-box">
+                                <div class="admin-chart-top">
+                                    <div>
+                                        <h3>Rendimiento por Sucursal</h3>
+                                        <p>Cumplimiento de objetivos</p>
+                                    </div>
+                                </div>
+                                <div class="admin-branch-list">
+                                    <div class="admin-branch-row">
+                                        <div class="admin-branch-info">
+                                            <div class="admin-branch-icon">01</div>
+                                            <div>
+                                                <div class="admin-branch-name">Sucursal Centro (CDMX)</div>
+                                                <div class="admin-branch-sub">Meta 112% · 38 ventas</div>
+                                            </div>
+                                        </div>
+                                        <div class="admin-branch-num">
+                                            <div class="admin-branch-total">$342,800</div>
+                                            <div class="admin-branch-badge">+18.5%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="admin-branch-row">
+                                        <div class="admin-branch-info">
+                                            <div class="admin-branch-icon">02</div>
+                                            <div>
+                                                <div class="admin-branch-name">Plaza Norte</div>
+                                                <div class="admin-branch-sub">Meta 98% · 27 ventas</div>
+                                            </div>
+                                        </div>
+                                        <div class="admin-branch-num">
+                                            <div class="admin-branch-total">$265,100</div>
+                                            <div class="admin-branch-badge">+12.2%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="admin-branch-row">
+                                        <div class="admin-branch-info">
+                                            <div class="admin-branch-icon">03</div>
+                                            <div>
+                                                <div class="admin-branch-name">Galerías Sur</div>
+                                                <div class="admin-branch-sub">Meta 91% · 19 ventas</div>
+                                            </div>
+                                        </div>
+                                        <div class="admin-branch-num">
+                                            <div class="admin-branch-total">$184,300</div>
+                                            <div class="admin-branch-badge">+8.7%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="admin-branch-row">
+                                        <div class="admin-branch-info">
+                                            <div class="admin-branch-icon">04</div>
+                                            <div>
+                                                <div class="admin-branch-name">Tienda Online</div>
+                                                <div class="admin-branch-sub">Meta 124% · 44 ventas</div>
+                                            </div>
+                                        </div>
+                                        <div class="admin-branch-num">
+                                            <div class="admin-branch-total">$418,900</div>
+                                            <div class="admin-branch-badge">+28.4%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div><!-- fin #statsFullContent -->
+                    </section>
+
+
+                    <!-- SECCIÓN 5: PERFILES DE USUARIO Y ROLES -->
+                    <section id="view-users" class="admin-view-panel">
+                        <!-- Banner de Bloqueo por Rol -->
+                        <div class="role-restricted-banner" id="usersRestrictedBanner" style="display: none;">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <h2>Gestión de Personal Restringida</h2>
+                            <p>Tu rol activo actualmente es <strong class="lbl-current-role">VENDEDOR</strong>. Solo la dirección general y usuarios con rol <strong>ADMINISTRADOR</strong> pueden gestionar cuentas, asignar sucursales o modificar accesos de colaboradores.</p>
+                            <button class="btn-mz btn-mz-primary" onclick="setRoleDemo('ADMIN')">
+                                <i class="fa-solid fa-shield-halved"></i> Cambiar a Perfil ADMINISTRADOR
+                            </button>
+                        </div>
+
+                        <div id="usersFullContent">
+                        <div class="admin-section-header">
+                            <div class="admin-header-title">
+                                <p>CONTROL DE ACCESO</p>
+                                <h1>Perfiles y Roles de Usuario</h1>
+                            </div>
+                            <div>
+                                <button class="btn-mz btn-mz-primary" onclick="openNewUserModal()">
+                                    <i class="fa-solid fa-user-plus"></i> Registrar Colaborador
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Tarjetas de Roles -->
+                        <div class="admin-kpi-grid">
+                            <div class="admin-kpi-card" style="flex-direction:column; gap:0.75rem;">
+                                <div style="display:flex; justify-content:space-between; width:100%;">
+                                    <span class="mz-badge mz-badge-danger">ADMINISTRADOR</span>
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <h3 style="font-size:18px;">Control Total</h3>
+                                <p style="font-size:12px; color:#666;">Acceso a balances financieros, utilidades netas, costos a proveedores y personal.</p>
+                            </div>
+
+                            <div class="admin-kpi-card" style="flex-direction:column; gap:0.75rem;">
+                                <div style="display:flex; justify-content:space-between; width:100%;">
+                                    <span class="mz-badge mz-badge-success">VENDEDOR</span>
+                                    <i class="fa-solid fa-tag"></i>
+                                </div>
+                                <h3 style="font-size:18px;">Punto de Venta</h3>
+                                <p style="font-size:12px; color:#666;">Ventas rápidas, cobro, emisión de comprobantes y consulta de stock.</p>
+                            </div>
+
+                            <div class="admin-kpi-card" style="flex-direction:column; gap:0.75rem;">
+                                <div style="display:flex; justify-content:space-between; width:100%;">
+                                    <span class="mz-badge mz-badge-warning">SUPERVISOR</span>
+                                    <i class="fa-solid fa-boxes-stacked"></i>
+                                </div>
+                                <h3 style="font-size:18px;">Almacén y Stock</h3>
+                                <p style="font-size:12px; color:#666;">Entradas/salidas, ajustes de inventario físico y alertas de reabastecimiento.</p>
+                            </div>
+                        </div>
+
+                        <!-- Tabla Usuarios -->
+                        <div class="admin-table-container">
+                            <div class="admin-table-header">
+                                <h3>Colaboradores Registrados</h3>
+                                <button class="btn-mz btn-mz-secondary btn-mz-sm" onclick="renderUsers()"><i class="fa-solid fa-arrows-rotate"></i> Actualizar</button>
+                            </div>
+                            <div style="overflow-x: auto;">
+                                <table class="admin-data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Colaborador</th>
+                                            <th>Rol</th>
+                                            <th>Sucursal</th>
+                                            <th>Contraseña Acceso</th>
+                                            <th>Ventas Mes</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="usersTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        </div><!-- fin #usersFullContent -->
+                    </section>
+
+
+                    <!-- SECCIÓN 6: SUCURSALES -->
+                    <section id="view-branches" class="admin-view-panel">
+                        <div class="admin-section-header">
+                            <div class="admin-header-title">
+                                <p>RED DE TIENDAS</p>
+                                <h1>Sucursales MobileZone</h1>
+                            </div>
+                        </div>
+
+                        <div class="admin-kpi-grid">
+                            <div class="admin-kpi-card" style="flex-direction:column; gap:0.5rem;">
+                                <span class="mz-badge mz-badge-success">Activa</span>
+                                <h3>Sucursal Centro</h3>
+                                <p style="font-size:12px; color:#666;"><i class="fa-solid fa-location-dot"></i> Av. Reforma #410, CDMX</p>
+                                <div style="font-size:12px; margin-top:8px; line-height:1.5;">
+                                    <strong>Encargada:</strong> Laura Sánchez<br>
+                                    <strong>Stock Local:</strong> 156 equipos
+                                </div>
+                            </div>
+
+                            <div class="admin-kpi-card" style="flex-direction:column; gap:0.5rem;">
+                                <span class="mz-badge mz-badge-success">Activa</span>
+                                <h3>Plaza Norte</h3>
+                                <p style="font-size:12px; color:#666;"><i class="fa-solid fa-location-dot"></i> CC Plaza Norte, Local 18</p>
+                                <div style="font-size:12px; margin-top:8px; line-height:1.5;">
+                                    <strong>Encargado:</strong> Roberto Gómez<br>
+                                    <strong>Stock Local:</strong> 94 equipos
+                                </div>
+                            </div>
+
+                            <div class="admin-kpi-card" style="flex-direction:column; gap:0.5rem;">
+                                <span class="mz-badge mz-badge-success">Activa</span>
+                                <h3>Galerías Sur</h3>
+                                <p style="font-size:12px; color:#666;"><i class="fa-solid fa-location-dot"></i> Periférico Sur #5000</p>
+                                <div style="font-size:12px; margin-top:8px; line-height:1.5;">
+                                    <strong>Encargado:</strong> Alejandro Ruiz<br>
+                                    <strong>Stock Local:</strong> 82 equipos
+                                </div>
+                            </div>
+
+                            <div class="admin-kpi-card" style="flex-direction:column; gap:0.5rem;">
+                                <span class="mz-badge mz-badge-dark">24/7 En Línea</span>
+                                <h3>Tienda Online</h3>
+                                <p style="font-size:12px; color:#666;"><i class="fa-solid fa-globe"></i> mobilezone.com</p>
+                                <div style="font-size:12px; margin-top:8px; line-height:1.5;">
+                                    <strong>Almacén Central:</strong> CDMX Nave 4<br>
+                                    <strong>Stock Web:</strong> 310 unidades
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div><!-- FIN DE #admin-view -->
+
+
+    <!-- ========================================================
+         MODALES Y VENTANAS EMERGENTES (INTEGRADOS)
+         ======================================================== -->
+
+    <!-- Modal 1: Producto -->
+    <div class="mz-modal-overlay" id="productModal">
+        <div class="mz-modal-box">
+            <div class="mz-modal-top">
+                <h3 id="modalProductTitle">Registrar Producto</h3>
+                <button class="mz-modal-close" onclick="closeAllModals()">&times;</button>
+            </div>
+            <form id="productForm">
+                <div class="mz-modal-body">
+                    <input type="hidden" id="productIdInput">
+                    <div class="mz-form-grid">
+                        <div class="mz-form-group full">
+                            <label for="prodName">Modelo / Nombre del Celular *</label>
+                            <input type="text" id="prodName" class="mz-input-control" placeholder="Ej: iPhone 15 Pro 256GB" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="prodSku">Código SKU *</label>
+                            <input type="text" id="prodSku" class="mz-input-control" placeholder="MZ-APP-15P" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="prodBrand">Marca *</label>
+                            <select id="prodBrand" class="mz-input-control" required>
+                                <option value="Apple">Apple</option>
+                                <option value="Samsung">Samsung</option>
+                                <option value="Xiaomi">Xiaomi</option>
+                                <option value="Motorola">Motorola</option>
+                                <option value="Google">Google</option>
+                                <option value="Accesorios">Accesorios</option>
+                            </select>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="prodCategory">Categoría *</label>
+                            <select id="prodCategory" class="mz-input-control" required>
+                                <option value="Smartphones">Smartphones</option>
+                                <option value="Accesorios">Accesorios</option>
+                                <option value="Audio">Audio</option>
+                            </select>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="prodBranch">Sucursal *</label>
+                            <select id="prodBranch" class="mz-input-control" required>
+                                <option value="Sucursal Centro">Sucursal Centro</option>
+                                <option value="Plaza Norte">Plaza Norte</option>
+                                <option value="Galerías Sur">Galerías Sur</option>
+                                <option value="Tienda Online">Tienda Online</option>
+                            </select>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="prodCost">Costo Proveedor ($ MXN) *</label>
+                            <input type="number" id="prodCost" class="mz-input-control" placeholder="18500" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="prodPrice">Precio Venta ($ MXN) *</label>
+                            <input type="number" id="prodPrice" class="mz-input-control" placeholder="23999" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="prodStock">Stock Inicial *</label>
+                            <input type="number" id="prodStock" class="mz-input-control" placeholder="10" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="prodMinStock">Alerta Mínima *</label>
+                            <input type="number" id="prodMinStock" class="mz-input-control" value="4" required>
+                        </div>
+                        <div class="mz-form-group full">
+                            <label for="prodImage">URL de Imagen</label>
+                            <input type="url" id="prodImage" class="mz-input-control" placeholder="https://ejemplo.com/foto.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="mz-modal-bottom">
+                    <button type="button" class="btn-mz btn-mz-secondary" onclick="closeAllModals()">Cancelar</button>
+                    <button type="submit" class="btn-mz btn-mz-primary">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2: Nueva Venta POS -->
+    <div class="mz-modal-overlay" id="newSaleModal">
+        <div class="mz-modal-box">
+            <div class="mz-modal-top">
+                <h3>Terminal de Cobro Rápido (POS)</h3>
+                <button class="mz-modal-close" onclick="closeAllModals()">&times;</button>
+            </div>
+            <form id="newSaleForm">
+                <div class="mz-modal-body">
+                    <div class="mz-form-grid">
+                        <div class="mz-form-group full">
+                            <label for="saleProductSelect">Seleccionar Celular en Stock *</label>
+                            <select id="saleProductSelect" class="mz-input-control" required></select>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="saleQty">Cantidad *</label>
+                            <input type="number" id="saleQty" class="mz-input-control" value="1" min="1" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="saleBranchSelect">Sucursal *</label>
+                            <select id="saleBranchSelect" class="mz-input-control" required>
+                                <option value="Sucursal Centro">Sucursal Centro</option>
+                                <option value="Plaza Norte">Plaza Norte</option>
+                                <option value="Galerías Sur">Galerías Sur</option>
+                                <option value="Tienda Online">Tienda Online</option>
+                            </select>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="saleCustomer">Cliente *</label>
+                            <input type="text" id="saleCustomer" class="mz-input-control" placeholder="Nombre del cliente" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="salePayment">Método de Pago *</label>
+                            <select id="salePayment" class="mz-input-control" required>
+                                <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+                                <option value="Tarjeta de Débito">Tarjeta de Débito</option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Transferencia">Transferencia SPEI</option>
+                                <option value="Mercado Pago">Mercado Pago</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="background:#f7f7f8; border:1px solid #e7e7e7; border-radius:8px; padding:1.25rem; margin-top:1rem;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem; font-size:13px;">
+                            <span>Subtotal:</span>
+                            <span id="saleModalSubtotal">$0</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:18px; color:#111; border-top:1px dashed #ddd; padding-top:0.5rem;">
+                            <span>Total a Cobrar:</span>
+                            <span id="saleModalTotal">$0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mz-modal-bottom">
+                    <button type="button" class="btn-mz btn-mz-secondary" onclick="closeAllModals()">Cancelar</button>
+                    <button type="submit" class="btn-mz btn-mz-primary">Cobrar y Emitir Ticket</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 3: Ticket / Recibo -->
+    <div class="mz-modal-overlay" id="ticketModal">
+        <div class="mz-modal-box" style="max-width: 440px;">
+            <div class="mz-modal-top">
+                <h3>Comprobante de Venta</h3>
+                <button class="mz-modal-close" onclick="closeAllModals()">&times;</button>
+            </div>
+            <div class="mz-modal-body" id="ticketContent"></div>
+            <div class="mz-modal-bottom">
+                <button type="button" class="btn-mz btn-mz-secondary" onclick="closeAllModals()">Cerrar</button>
+                <button type="button" class="btn-mz btn-mz-primary" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: Usuario -->
+    <div class="mz-modal-overlay" id="userModal">
+        <div class="mz-modal-box">
+            <div class="mz-modal-top">
+                <h3 id="modalUserTitle">Registrar Colaborador</h3>
+                <button class="mz-modal-close" onclick="closeAllModals()">&times;</button>
+            </div>
+            <form id="userForm" onsubmit="saveUserFromForm(event)">
+                <div class="mz-modal-body">
+                    <input type="hidden" id="userIdInput">
+                    <div class="mz-form-grid">
+                        <div class="mz-form-group full">
+                            <label for="userNameInput">Nombre Completo *</label>
+                            <input type="text" id="userNameInput" class="mz-input-control" placeholder="Ej: Patricia Morales" required>
+                        </div>
+                        <div class="mz-form-group full">
+                            <label for="userEmailInput">Correo Corporativo *</label>
+                            <input type="email" id="userEmailInput" class="mz-input-control" placeholder="patricia@mobilezone.com" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="userRoleSelect">Rol *</label>
+                            <select id="userRoleSelect" class="mz-input-control" required>
+                                <option value="ADMIN">ADMIN (Acceso Total)</option>
+                                <option value="VENDEDOR">VENDEDOR (Operativo / POS)</option>
+                                <option value="SUPERVISOR">SUPERVISOR (Almacén / Stock)</option>
+                            </select>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="userBranchSelect">Sucursal *</label>
+                            <select id="userBranchSelect" class="mz-input-control" required>
+                                <option value="Todas las Sucursales">Todas las Sucursales</option>
+                                <option value="Sucursal Centro">Sucursal Centro</option>
+                                <option value="Plaza Norte">Plaza Norte</option>
+                                <option value="Galerías Sur">Galerías Sur</option>
+                                <option value="Tienda Online">Tienda Online</option>
+                            </select>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="userStatusSelect">Estado *</label>
+                            <select id="userStatusSelect" class="mz-input-control" required>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                        <div class="mz-form-group full">
+                            <label for="userPasswordInput">Contraseña de Acceso al Sistema *</label>
+                            <input type="text" id="userPasswordInput" class="mz-input-control" placeholder="Ej: clave123" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="mz-modal-bottom">
+                    <button type="button" class="btn-mz btn-mz-secondary" onclick="closeAllModals()">Cancelar</button>
+                    <button type="submit" class="btn-mz btn-mz-primary">Guardar Usuario</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ========================================================
+         MODALES Y ELEMENTOS DE LA TIENDA PÚBLICA (TOTALMENTE FUNCIONALES)
+         ======================================================== -->
+
+    <!-- DRAWER DEL CARRITO DE COMPRAS SLIDE-OVER -->
+    <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="closeCartDrawer()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <h3><i class="fa-solid fa-bag-shopping"></i> Tu Carrito (<span id="cartDrawerCount">0</span>)</h3>
+            <button class="cart-close-btn" onclick="closeCartDrawer()">&times;</button>
+        </div>
+
+        <div class="cart-free-shipping-bar">
+            <div id="shippingStatusText" style="font-weight: 600; color: #111;">Envío gratis en compras mayores a $5,000 MXN</div>
+            <div class="shipping-progress-track">
+                <div class="shipping-progress-fill" id="shippingProgressFill" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <div class="cart-items-body" id="cartItemsContainer">
+            <!-- Items dinámicos del carrito -->
+        </div>
+
+        <div class="cart-drawer-footer" id="cartDrawerFooter">
+            <div class="cart-summary-line">
+                <span>Subtotal:</span>
+                <span id="cartSubtotalText">$0 MXN</span>
+            </div>
+            <div class="cart-summary-line">
+                <span>Envío estimado:</span>
+                <span id="cartShippingText">Calculando...</span>
+            </div>
+            <div class="cart-summary-total">
+                <span>TOTAL:</span>
+                <span id="cartTotalText">$0 MXN</span>
+            </div>
+            <button class="cart-checkout-btn" id="btnCartCheckout" onclick="openCheckoutModal()">
+                <i class="fa-solid fa-lock"></i> Proceder al Pago
+            </button>
+        </div>
+    </div>
+
+
+    <!-- MODAL DE BÚSQUEDA RÁPIDA EN EL CATÁLOGO -->
+    <div class="mz-modal-overlay" id="searchModal">
+        <div class="mz-modal-box search-modal-box">
+            <div class="search-input-header">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="storeSearchInput" class="search-input-big" placeholder="Buscar celular por marca, modelo o SKU..." oninput="handleStoreSearch(this.value)">
+                <button class="mz-modal-close" onclick="closeSearchModal()">&times;</button>
+            </div>
+            <div class="search-results-list" id="searchResultsContainer">
+                <div style="padding: 2.5rem; text-align: center; color: #888;">
+                    <i class="fa-solid fa-mobile-screen" style="font-size: 32px; color: #ddd; margin-bottom: 10px; display: block;"></i>
+                    Escribe para buscar smartphones, fundas o accesorios...
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL DE FINALIZACIÓN DE COMPRA (CHECKOUT) -->
+    <div class="mz-modal-overlay" id="checkoutModal">
+        <div class="mz-modal-box">
+            <div class="mz-modal-top">
+                <h3>Finalizar Compra - MobileZone</h3>
+                <button class="mz-modal-close" onclick="closeCheckoutModal()">&times;</button>
+            </div>
+            <form id="storeCheckoutForm" onsubmit="processStoreCheckout(event)">
+                <div class="mz-modal-body">
+                    <p style="font-size: 13px; color: #666; margin-bottom: 1.25rem;">
+                        Ingresa tus datos de envío para procesar tu orden y apartar tus equipos en inventario automáticamente.
+                    </p>
+                    <div class="mz-form-grid">
+                        <div class="mz-form-group full">
+                            <label>Nombre Completo del Cliente *</label>
+                            <input type="text" id="checkoutCustName" class="mz-input-control" placeholder="Ej: Roberto Valencia" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label>Correo Electrónico *</label>
+                            <input type="email" id="checkoutCustEmail" class="mz-input-control" placeholder="roberto@gmail.com" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label>Teléfono (WhatsApp) *</label>
+                            <input type="tel" id="checkoutCustPhone" class="mz-input-control" placeholder="(55) 1234 5678" required>
+                        </div>
+                        <div class="mz-form-group full">
+                            <label>Dirección de Envío Completa *</label>
+                            <input type="text" id="checkoutCustAddress" class="mz-input-control" placeholder="Calle, Número, Colonia, Ciudad, C.P." required>
+                        </div>
+                        <div class="mz-form-group full">
+                            <label>Método de Pago *</label>
+                            <select id="checkoutCustPayment" class="mz-input-control" required>
+                                <option value="Tarjeta de Crédito">Tarjeta de Crédito (Visa / Mastercard)</option>
+                                <option value="Tarjeta de Débito">Tarjeta de Débito</option>
+                                <option value="Transferencia SPEI">Transferencia SPEI Inmediata</option>
+                                <option value="Efectivo en Tienda">Pago contra entrega en Sucursal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Resumen del Pedido -->
+                    <div style="background: #f7f7f8; border: 1px solid #e7e7e7; border-radius: 8px; padding: 1.25rem; margin-top: 1rem;">
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
+                            <span>Artículos seleccionados:</span>
+                            <span id="checkoutItemsCount">0 productos</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;">
+                            <span>Costo de Envío:</span>
+                            <span id="checkoutShippingFee">$0 MXN</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 17px; font-weight: 800; border-top: 1px dashed #ddd; padding-top: 6px; color: #111;">
+                            <span>Total a Pagar:</span>
+                            <span id="checkoutTotalText">$0 MXN</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mz-modal-bottom">
+                    <button type="button" class="btn-mz btn-mz-secondary" onclick="closeCheckoutModal()">Cancelar</button>
+                    <button type="submit" class="btn-mz btn-mz-primary">
+                        <i class="fa-solid fa-lock"></i> Confirmar y Realizar Pedido
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- MODAL DE PEDIDO CONFIRMADO (TICKET CLIENTE) -->
+    <div class="mz-modal-overlay" id="orderSuccessModal">
+        <div class="mz-modal-box" style="max-width: 480px; text-align: center;">
+            <div class="mz-modal-body" style="padding: 2.5rem 1.5rem;">
+                <div style="width: 56px; height: 56px; border-radius: 50%; background: #ecfdf5; color: #10b981; display: inline-flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 1rem;">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2 style="font-size: 22px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.5rem;">¡Compra Exitosa!</h2>
+                <p style="font-size: 13px; color: #666; margin-bottom: 1.5rem;">
+                    Tu pedido ha sido procesado y el inventario se actualizó de inmediato.
+                </p>
+                <div id="orderSuccessDetails" style="background: #fafafa; border: 1px dashed #ddd; border-radius: 8px; padding: 1.25rem; text-align: left; margin-bottom: 1.5rem; font-size: 13px; line-height: 1.6;">
+                    <!-- Se llena con JS -->
+                </div>
+                <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn-mz btn-mz-secondary" onclick="closeOrderSuccessModal()">Seguir Comprando</button>
+                    <button class="btn-mz btn-mz-primary" onclick="closeOrderSuccessModal(); switchToAdminView();">
+                        <i class="fa-solid fa-sliders"></i> Ver Venta en Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL 5: AUTENTICACIÓN DE CLIENTES (LOGIN / REGISTRO) -->
+    <div class="mz-modal-overlay" id="customerAuthModal">
+        <div class="mz-modal-box" style="max-width: 480px;">
+            <div class="mz-modal-top">
+                <h3 id="customerAuthTitle"><i class="fa-solid fa-circle-user"></i> Acceso de Clientes</h3>
+                <button class="mz-modal-close" onclick="closeCustomerAuthModal()">&times;</button>
+            </div>
+            
+            <div class="customer-auth-tabs">
+                <button type="button" class="cust-auth-tab active" id="tabCustomerLogin" onclick="switchCustomerAuthTab('login')">
+                    Iniciar Sesión
+                </button>
+                <button type="button" class="cust-auth-tab" id="tabCustomerRegister" onclick="switchCustomerAuthTab('register')">
+                    Crear Cuenta
+                </button>
+            </div>
+
+            <!-- Aviso cuando se requiere login antes de pagar -->
+            <div id="customerCheckoutNotice" style="display:none; background:#ecfdf5; border:1px solid #a7f3d0; border-radius:6px; padding:10px 14px; margin: 15px 24px 0 24px; font-size:13px; color:#065f46;">
+                <i class="fa-solid fa-lock"></i> Inicia sesión o crea tu cuenta para continuar con tu compra y recibir tu guía de envío.
+            </div>
+
+            <!-- TAB 1: FORMULARIO INICIAR SESIÓN -->
+            <form id="customerLoginForm" onsubmit="handleCustomerLogin(event)">
+                <div class="mz-modal-body">
+                    <div class="mz-form-grid" style="grid-template-columns: 1fr;">
+                        <div class="mz-form-group">
+                            <label for="custLoginEmail">Correo Electrónico *</label>
+                            <input type="email" id="custLoginEmail" class="mz-input-control" placeholder="ejemplo@gmail.com" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="custLoginPassword">Contraseña *</label>
+                            <div style="position:relative;">
+                                <input type="password" id="custLoginPassword" class="mz-input-control" placeholder="Tu contraseña" required>
+                                <button type="button" class="btn-toggle-pwd" onclick="togglePasswordVisibility('custLoginPassword', this)">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cuenta demo rápida para el evaluador -->
+                    <div class="quick-demo-account-box">
+                        <div style="font-size:12px; color:#555; margin-bottom:6px; font-weight:600;">
+                            <i class="fa-solid fa-bolt" style="color:#f59e0b;"></i> Cuenta de Cliente para Pruebas:
+                        </div>
+                        <button type="button" class="btn-quick-fill" onclick="quickFillCustomerAccount()">
+                            <span><strong>cliente@mobilezone.com</strong> &nbsp;·&nbsp; Contraseña: <code>cliente123</code></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="mz-modal-bottom">
+                    <button type="button" class="btn-mz btn-mz-secondary" onclick="closeCustomerAuthModal()">Cancelar</button>
+                    <button type="submit" class="btn-mz btn-mz-primary">Iniciar Sesión</button>
+                </div>
+            </form>
+
+            <!-- TAB 2: FORMULARIO CREAR CUENTA -->
+            <form id="customerRegisterForm" onsubmit="handleCustomerRegister(event)" style="display:none;">
+                <div class="mz-modal-body">
+                    <div class="mz-form-grid" style="grid-template-columns: 1fr;">
+                        <div class="mz-form-group">
+                            <label for="custRegName">Nombre Completo *</label>
+                            <input type="text" id="custRegName" class="mz-input-control" placeholder="Ej: Mariana Morales" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="custRegEmail">Correo Electrónico *</label>
+                            <input type="email" id="custRegEmail" class="mz-input-control" placeholder="tu-email@gmail.com" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="custRegPhone">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="custRegPhone" class="mz-input-control" placeholder="Ej: 55 1234 5678" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="custRegAddress">Dirección de Entrega Completa *</label>
+                            <input type="text" id="custRegAddress" class="mz-input-control" placeholder="Calle, Número, Colonia, C.P., Ciudad" required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="custRegPassword">Crear Contraseña *</label>
+                            <div style="position:relative;">
+                                <input type="password" id="custRegPassword" class="mz-input-control" placeholder="Mínimo 6 caracteres" minlength="4" required>
+                                <button type="button" class="btn-toggle-pwd" onclick="togglePasswordVisibility('custRegPassword', this)">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mz-modal-bottom">
+                    <button type="button" class="btn-mz btn-mz-secondary" onclick="closeCustomerAuthModal()">Cancelar</button>
+                    <button type="submit" class="btn-mz btn-mz-primary">Registrarme y Comprar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- MODAL 6: DETALLES DE CUENTA DE CLIENTE LOGUEADO -->
+    <div class="mz-modal-overlay" id="customerProfileModal">
+        <div class="mz-modal-box" style="max-width: 500px;">
+            <div class="mz-modal-top">
+                <h3><i class="fa-solid fa-id-card"></i> Mi Cuenta de Cliente</h3>
+                <button class="mz-modal-close" onclick="closeCustomerProfileModal()">&times;</button>
+            </div>
+            <div class="mz-modal-body" id="customerProfileBody">
+                <!-- Se llena con JS -->
+            </div>
+            <div class="mz-modal-bottom">
+                <button type="button" class="btn-mz btn-mz-danger" onclick="logoutCustomer()">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión
+                </button>
+                <button type="button" class="btn-mz btn-mz-primary" onclick="closeCustomerProfileModal()">Listo</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL 7: ACCESO ADMINISTRATIVO CORPORATIVO CON CONTRASEÑA -->
+    <div class="mz-modal-overlay" id="adminAuthModal">
+        <div class="mz-modal-box" style="max-width: 470px;">
+            <div class="mz-modal-top">
+                <div>
+                    <h3 style="display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-shield-halved"></i> Acceso Corporativo MobileZone
+                    </h3>
+                    <p style="font-size:12px; color:#777; margin:4px 0 0 0;">Control de acceso para personal con roles protegidos</p>
+                </div>
+                <button class="mz-modal-close" onclick="closeAdminAuthModal()">&times;</button>
+            </div>
+            <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+                <div class="mz-modal-body">
+                    <div class="mz-form-grid" style="grid-template-columns: 1fr;">
+                        <div class="mz-form-group">
+                            <label for="adminLoginUserSelect">Seleccionar Colaborador *</label>
+                            <select id="adminLoginUserSelect" class="mz-input-control" onchange="onAdminUserSelectChange(this.value)" required>
+                                <!-- Cargado dinámicamente -->
+                            </select>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="adminLoginEmail">Correo Institucional *</label>
+                            <input type="email" id="adminLoginEmail" class="mz-input-control" readonly required>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="adminLoginPassword">Contraseña de Seguridad *</label>
+                            <div style="position:relative;">
+                                <input type="password" id="adminLoginPassword" class="mz-input-control" placeholder="Ingresa la contraseña del rol" required autofocus>
+                                <button type="button" class="btn-toggle-pwd" onclick="togglePasswordVisibility('adminLoginPassword', this)">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Credenciales oficiales para evaluación del cliente -->
+                    <div class="admin-credentials-hint-box">
+                        <div style="font-weight:700; font-size:12px; color:#111; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-key" style="color:#d97706;"></i> Contraseñas oficiales configuradas:
+                        </div>
+                        <div class="admin-role-hint-row" onclick="quickFillAdminAuth('usr-1', 'admin123')">
+                            <span><strong>ADMIN</strong> (Carlos Mendoza):</span> <code>admin123</code> <button type="button" class="btn-mini-use">Cargar</button>
+                        </div>
+                        <div class="admin-role-hint-row" onclick="quickFillAdminAuth('usr-2', 'ventas123')">
+                            <span><strong>VENDEDOR</strong> (Laura Sánchez):</span> <code>ventas123</code> <button type="button" class="btn-mini-use">Cargar</button>
+                        </div>
+                        <div class="admin-role-hint-row" onclick="quickFillAdminAuth('usr-4', 'almacen123')">
+                            <span><strong>SUPERVISOR</strong> (Mariana Torres):</span> <code>almacen123</code> <button type="button" class="btn-mini-use">Cargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mz-modal-bottom">
+                    <button type="button" class="btn-mz btn-mz-secondary" onclick="closeAdminAuthModal()">Cancelar</button>
+                    <button type="submit" class="btn-mz btn-mz-primary">
+                        <i class="fa-solid fa-lock-open"></i> Verificar y Acceder
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- MODAL 8: CAMBIO DE ROL / SESIÓN EN PANEL ADMIN CON VALIDACIÓN DE CONTRASEÑA -->
+    <div class="mz-modal-overlay" id="adminSwitchModal">
+        <div class="mz-modal-box" style="max-width: 440px;">
+            <div class="mz-modal-top">
+                <h3><i class="fa-solid fa-arrows-rotate"></i> Cambiar Sesión de Rol</h3>
+                <button class="mz-modal-close" onclick="closeAdminSwitchModal()">&times;</button>
+            </div>
+            <form id="adminSwitchForm" onsubmit="handleAdminSwitchSubmit(event)">
+                <div class="mz-modal-body">
+                    <p style="font-size:13px; color:#666; margin-bottom:1rem; line-height:1.5;">
+                        Cada rol cuenta con permisos y responsabilidades específicas. Ingresa la contraseña del nuevo colaborador para autorizar el cambio:
+                    </p>
+                    <div class="mz-form-grid" style="grid-template-columns: 1fr;">
+                        <div class="mz-form-group">
+                            <label for="switchUserSelect">Cambiar al perfil de *</label>
+                            <select id="switchUserSelect" class="mz-input-control" onchange="onSwitchUserSelectChange(this.value)" required>
+                                <!-- Cargado dinámicamente -->
+                            </select>
+                        </div>
+                        <div class="mz-form-group">
+                            <label for="switchUserPassword">Contraseña de este Rol *</label>
+                            <div style="position:relative;">
+                                <input type="password" id="switchUserPassword" class="mz-input-control" placeholder="Contraseña requerida" required autofocus>
+                                <button type="button" class="btn-toggle-pwd" onclick="togglePasswordVisibility('switchUserPassword', this)">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-credentials-hint-box" style="margin-top:12px;">
+                        <div style="font-size:11px; color:#555;" id="switchPasswordHintText">
+                            Pista: Carlos (ADMIN) = <code>admin123</code> | Laura (VENDEDOR) = <code>ventas123</code> | Mariana (SUPERVISOR) = <code>almacen123</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="mz-modal-bottom">
+                    <button type="button" class="btn-mz btn-mz-secondary" onclick="closeAdminSwitchModal()">Cancelar</button>
+                    <button type="submit" class="btn-mz btn-mz-primary">
+                        <i class="fa-solid fa-shield-check"></i> Validar Contraseña
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- CONTENEDOR FLOTANTE DE NOTIFICACIONES (TOASTS) -->
+    <div class="toast-container" id="toastContainer"></div>
+
+
+    <!-- ========================================================
+         LÓGICA JAVASCRIPT PROFESIONAL Y UNIFICADA (100% FUNCIONAL)
+         ======================================================== -->
+    <script>
+        // ----------------------------------------------------
+        // 1. BASE DE DATOS INICIAL CON PERSISTENCIA LOCAL
+        // ----------------------------------------------------
+        const INITIAL_PRODUCTS = [
+            {
+                id: "prod-1",
+                sku: "MZ-APP-15P",
+                name: "iPhone 15 Pro",
+                brand: "Apple",
+                category: "Smartphones",
+                branch: "Sucursal Centro",
+                specs: "256 GB · 8 GB RAM · 5G Titán",
+                cost: 18500,
+                price: 23399,
+                oldPrice: 25999,
+                stock: 14,
+                minStock: 5,
+                badge: "-10%",
+                image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=700&q=90"
+            },
+            {
+                id: "prod-2",
+                sku: "MZ-SAM-S24U",
+                name: "Galaxy S24 Ultra",
+                brand: "Samsung",
+                category: "Smartphones",
+                branch: "Plaza Norte",
+                specs: "512 GB · 12 GB RAM · S-Pen 5G",
+                cost: 20000,
+                price: 27999,
+                oldPrice: 29999,
+                stock: 8,
+                minStock: 4,
+                badge: "NUEVO",
+                image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=700&q=90"
+            },
+            {
+                id: "prod-3",
+                sku: "MZ-GOO-P9P",
+                name: "Pixel 9 Pro",
+                brand: "Google",
+                category: "Smartphones",
+                branch: "Galerías Sur",
+                specs: "256 GB · 16 GB RAM · Tensor G4",
+                cost: 16500,
+                price: 21249,
+                oldPrice: 24999,
+                stock: 6,
+                minStock: 4,
+                badge: "-15%",
+                image: "https://images.kabum.com.br/produtos/fotos/sync_mirakl/882413/xlarge/Google-Pixel-9-Pro-128GB-Rose-Quartz_1781806727.jpg"
+            },
+            {
+                id: "prod-4",
+                sku: "MZ-XIA-14",
+                name: "Xiaomi 14 Pro",
+                brand: "Xiaomi",
+                category: "Smartphones",
+                branch: "Sucursal Centro",
+                specs: "512 GB · 12 GB RAM · Leica Cámara",
+                cost: 14000,
+                price: 16999,
+                oldPrice: 18999,
+                stock: 3, // Stock Crítico
+                minStock: 5,
+                badge: "OFERTA",
+                image: "https://http2.mlstatic.com/D_NQ_NP_2X_952515-MLA99381224974_112025-F.webp"
+            },
+            {
+                id: "prod-5",
+                sku: "MZ-APP-15",
+                name: "iPhone 15",
+                brand: "Apple",
+                category: "Smartphones",
+                branch: "Tienda Online",
+                specs: "128 GB · 6 GB RAM · Dynamic Island",
+                cost: 14500,
+                price: 17599,
+                oldPrice: 19999,
+                stock: 19,
+                minStock: 5,
+                badge: "-12%",
+                image: "https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=700&q=90"
+            },
+            {
+                id: "prod-6",
+                sku: "MZ-ONE-12",
+                name: "OnePlus 12",
+                brand: "OnePlus",
+                category: "Smartphones",
+                branch: "Galerías Sur",
+                specs: "256 GB · 12 GB RAM · Snapdragon 8G3",
+                cost: 12000,
+                price: 15499,
+                oldPrice: 17499,
+                stock: 9,
+                minStock: 4,
+                badge: "NUEVO",
+                image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=90"
+            },
+            {
+                id: "prod-7",
+                sku: "MZ-MOT-E50",
+                name: "Motorola Edge 50 Ultra",
+                brand: "Motorola",
+                category: "Smartphones",
+                branch: "Plaza Norte",
+                specs: "512 GB · 12 GB RAM · Carga 125W",
+                cost: 11500,
+                price: 14999,
+                oldPrice: 16999,
+                stock: 12,
+                minStock: 4,
+                badge: "DESTACADO",
+                image: "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=700&q=90"
+            },
+            {
+                id: "prod-8",
+                sku: "MZ-ACC-MAG",
+                name: "Funda Silicona MagSafe",
+                brand: "Accesorios",
+                category: "Accesorios",
+                branch: "Sucursal Centro",
+                specs: "Alineación magnética antigolpes",
+                cost: 180,
+                price: 499,
+                oldPrice: 699,
+                stock: 42,
+                minStock: 10,
+                badge: "ACCESORIO",
+                image: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=700&q=90"
+            },
+            {
+                id: "prod-9",
+                sku: "MZ-ACC-65W",
+                name: "Cargador GaN 65W Rápido",
+                brand: "Accesorios",
+                category: "Accesorios",
+                branch: "Plaza Norte",
+                specs: "Dual USB-C Power Delivery 3.0",
+                cost: 320,
+                price: 799,
+                oldPrice: 999,
+                stock: 2, // Stock Crítico
+                minStock: 6,
+                badge: "TOP VENTAS",
+                image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=700&q=90"
+            },
+            {
+                id: "prod-10",
+                sku: "MZ-AUD-APP2",
+                name: "AirPods Pro (2da Gen)",
+                brand: "Apple",
+                category: "Audio",
+                branch: "Galerías Sur",
+                specs: "Cancelación activa de ruido USB-C",
+                cost: 3800,
+                price: 4999,
+                oldPrice: 5499,
+                stock: 11,
+                minStock: 3,
+                badge: "AUDIO",
+                image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=700&q=90"
+            }
+        ];
+
+        const INITIAL_SALES = [
+            {
+                id: "MZ-1094",
+                date: "2026-10-12 10:15",
+                customer: "Carlos Santana",
+                branch: "Sucursal Centro",
+                seller: "Laura Sánchez",
+                items: [{ name: "iPhone 15 Pro", qty: 1, price: 23399 }],
+                paymentMethod: "Tarjeta de Crédito",
+                total: 23399,
+                status: "Completada"
+            },
+            {
+                id: "MZ-1093",
+                date: "2026-10-11 18:40",
+                customer: "Valeria Montero",
+                branch: "Plaza Norte",
+                seller: "Roberto Gómez",
+                items: [{ name: "Galaxy S24 Ultra", qty: 1, price: 27999 }],
+                paymentMethod: "Transferencia",
+                total: 27999,
+                status: "Completada"
+            },
+            {
+                id: "MZ-1092",
+                date: "2026-10-11 14:10",
+                customer: "Héctor Beltrán",
+                branch: "Tienda Online",
+                seller: "Portal Web E-Commerce",
+                items: [
+                    { name: "Motorola Edge 50 Ultra", qty: 1, price: 14999 },
+                    { name: "Cargador GaN 65W Rápido", qty: 1, price: 799 }
+                ],
+                paymentMethod: "Mercado Pago",
+                total: 15798,
+                status: "Pendiente"
+            },
+            {
+                id: "MZ-1091",
+                date: "2026-10-10 11:30",
+                customer: "Daniela Ortiz",
+                branch: "Galerías Sur",
+                seller: "Alejandro Ruiz",
+                items: [{ name: "AirPods Pro (2da Gen)", qty: 2, price: 4999 }],
+                paymentMethod: "Efectivo",
+                total: 9998,
+                status: "Completada"
+            }
+        ];
+
+        const INITIAL_CUSTOMERS = [
+            {
+                id: "cust-1",
+                name: "Alejandro Morales",
+                email: "cliente@mobilezone.com",
+                password: "cliente123",
+                phone: "55 4123 9876",
+                address: "Av. Insurgentes Sur #1450, Col. Actipan, CDMX"
+            }
+        ];
+
+        const INITIAL_USERS = [
+            {
+                id: "usr-1",
+                name: "Carlos Mendoza",
+                email: "carlos.admin@mobilezone.com",
+                password: "admin123",
+                role: "ADMIN",
+                branch: "Todas las Sucursales",
+                salesCount: 42,
+                totalSalesAmount: 489500,
+                status: "Activo"
+            },
+            {
+                id: "usr-2",
+                name: "Laura Sánchez",
+                email: "laura.sanchez@mobilezone.com",
+                password: "ventas123",
+                role: "VENDEDOR",
+                branch: "Sucursal Centro",
+                salesCount: 28,
+                totalSalesAmount: 235400,
+                status: "Activo"
+            },
+            {
+                id: "usr-3",
+                name: "Roberto Gómez",
+                email: "roberto.gomez@mobilezone.com",
+                password: "ventas123",
+                role: "VENDEDOR",
+                branch: "Plaza Norte",
+                salesCount: 23,
+                totalSalesAmount: 198700,
+                status: "Activo"
+            },
+            {
+                id: "usr-4",
+                name: "Mariana Torres",
+                email: "mariana.torres@mobilezone.com",
+                password: "almacen123",
+                role: "SUPERVISOR",
+                branch: "Sucursal Centro",
+                salesCount: 4,
+                totalSalesAmount: 32000,
+                status: "Activo"
+            }
+        ];
+
+        // Normalizar contraseñas existentes de localStorage si provienen de versión anterior
+        let loadedUsers = JSON.parse(localStorage.getItem("mz_users")) || INITIAL_USERS;
+        loadedUsers = loadedUsers.map(u => {
+            u.name = u.name.replace(" (Tú)", "");
+            if (!u.password) {
+                if (u.role === "ADMIN") u.password = "admin123";
+                else if (u.role === "VENDEDOR") u.password = "ventas123";
+                else if (u.role === "SUPERVISOR") u.password = "almacen123";
+                else u.password = "123456";
+            }
+            return u;
+        });
+
+        // Estado Global Reactivo
+        let appData = {
+            products: JSON.parse(localStorage.getItem("mz_products")) || INITIAL_PRODUCTS,
+            sales: JSON.parse(localStorage.getItem("mz_sales")) || INITIAL_SALES,
+            users: loadedUsers,
+            currentRole: "ADMIN",
+            currentBranch: "ALL",
+            statsQuery: { period: "monthly", branch: "ALL" }
+        };
+
+        // Estado de Clientes y Sesiones
+        let appCustomers = JSON.parse(localStorage.getItem("mz_customers")) || INITIAL_CUSTOMERS;
+        let currentCustomer = JSON.parse(localStorage.getItem("mz_active_customer")) || null;
+        let currentAdminUser = JSON.parse(localStorage.getItem("mz_active_admin")) || null;
+
+        // Carrito de compras de la tienda
+        let storeCart = JSON.parse(localStorage.getItem("mz_store_cart")) || [];
+
+        function saveState() {
+            localStorage.setItem("mz_products", JSON.stringify(appData.products));
+            localStorage.setItem("mz_sales", JSON.stringify(appData.sales));
+            localStorage.setItem("mz_users", JSON.stringify(appData.users));
+            localStorage.setItem("mz_store_cart", JSON.stringify(storeCart));
+            localStorage.setItem("mz_customers", JSON.stringify(appCustomers));
+            if (currentCustomer) {
+                localStorage.setItem("mz_active_customer", JSON.stringify(currentCustomer));
+            } else {
+                localStorage.removeItem("mz_active_customer");
+            }
+            if (currentAdminUser) {
+                localStorage.setItem("mz_active_admin", JSON.stringify(currentAdminUser));
+            } else {
+                localStorage.removeItem("mz_active_admin");
+            }
+        }
+
+        const formatCurrency = (val) => {
+            return new Intl.NumberFormat('es-MX', {
+                style: 'currency',
+                currency: 'MXN',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(val || 0);
+        };
+
+        // ----------------------------------------------------
+        // 2. CAMBIO DE VISTA (TIENDA VS PANEL ADMIN)
+        // ----------------------------------------------------
+        function switchToAdminView() {
+            if (!currentAdminUser) {
+                openAdminAuthModal();
+                return;
+            }
+
+            document.getElementById("store-view").style.display = "none";
+            const adminView = document.getElementById("admin-view");
+            adminView.style.display = "flex";
+            adminView.classList.add("active");
+            window.location.hash = "admin";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+
+            applyActiveAdminSessionUI();
+            renderDashboard();
+            renderInventory();
+            renderSales();
+            renderStatistics();
+            renderUsers();
+        }
+
+        function switchToStoreView() {
+            document.getElementById("admin-view").style.display = "none";
+            document.getElementById("admin-view").classList.remove("active");
+            document.getElementById("store-view").style.display = "block";
+            window.location.hash = "tienda";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+
+            updateCustomerNavUI();
+            renderStoreCatalog();
+            updateCartBadge();
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            updateCustomerNavUI();
+            if (window.location.hash === "#admin") {
+                if (currentAdminUser) {
+                    switchToAdminView();
+                } else {
+                    switchToStoreView();
+                    openAdminAuthModal();
+                }
+            } else {
+                switchToStoreView();
+            }
+            initAdminNav();
+            initAdminControls();
+            initAdminModals();
+            renderStoreCatalog();
+            updateCartBadge();
+        });
+
+        window.addEventListener("hashchange", () => {
+            if (window.location.hash === "#admin") {
+                if (currentAdminUser) {
+                    switchToAdminView();
+                } else {
+                    switchToStoreView();
+                    openAdminAuthModal();
+                }
+            } else if (window.location.hash === "#tienda" || window.location.hash === "") {
+                switchToStoreView();
+            }
+        });
+
+        // ----------------------------------------------------
+        // 3. CARRITO DE COMPRAS Y CHECKOUT DE LA TIENDA
+        // ----------------------------------------------------
+        let currentCatalogBrand = 'ALL';
+        let currentCatalogSort = 'featured';
+
+        function renderStoreCatalog(filterBrand = currentCatalogBrand, sortType = currentCatalogSort) {
+            currentCatalogBrand = filterBrand;
+            currentCatalogSort = sortType;
+            const container = document.getElementById("storeProductsGrid");
+            if (!container) return;
+
+            let items = [...appData.products];
+
+            // Filtro de marca
+            if (filterBrand !== 'ALL') {
+                if (filterBrand === 'Accesorios') {
+                    items = items.filter(p => p.category === 'Accesorios' || p.category === 'Audio');
+                } else {
+                    items = items.filter(p => p.brand.toLowerCase() === filterBrand.toLowerCase());
+                }
+            }
+
+            // Ordenamiento
+            if (sortType === 'price-asc') items.sort((a, b) => a.price - b.price);
+            else if (sortType === 'price-desc') items.sort((a, b) => b.price - a.price);
+            else if (sortType === 'name-asc') items.sort((a, b) => a.name.localeCompare(b.name));
+
+            container.innerHTML = "";
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: #888;">
+                        <i class="fa-solid fa-mobile-screen" style="font-size: 42px; color: #ddd; margin-bottom: 12px; display: block;"></i>
+                        No se encontraron modelos disponibles para este filtro.
+                    </div>
+                `;
+                return;
+            }
+
+            items.forEach(p => {
+                const isOutOfStock = p.stock <= 0;
+                const article = document.createElement("article");
+                article.className = "product-card";
+
+                article.innerHTML = `
+                    <div class="product-image">
+                        <span class="${isOutOfStock ? 'discount' : (p.badge === 'NUEVO' ? 'new' : 'discount')}" style="${isOutOfStock ? 'background:#dc2626;' : ''}">
+                            ${isOutOfStock ? 'AGOTADO' : (p.badge || 'PROMO')}
+                        </span>
+                        <img src="${p.image}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=700'">
+                    </div>
+                    <div class="product-info">
+                        <p class="brand">${p.brand.toUpperCase()}</p>
+                        <h3>${p.name}</h3>
+                        <p class="specs">${p.specs || (p.category + ' · ' + p.branch)}</p>
+                        <div class="price">
+                            ${p.oldPrice ? `<span class="old-price">${formatCurrency(p.oldPrice)}</span>` : ''}
+                            <strong>${formatCurrency(p.price)} MXN</strong>
+                        </div>
+                        <button class="add-cart" onclick="addToCart('${p.id}')" ${isOutOfStock ? 'disabled style="background:#e5e5e5; color:#999; cursor:not-allowed;"' : ''}>
+                            ${isOutOfStock ? 'Agotado' : 'Agregar al carrito'}
+                        </button>
+                    </div>
+                `;
+                container.appendChild(article);
+            });
+        }
+
+        function filterCatalogBrand(brand, btn) {
+            document.querySelectorAll("#catalogFilterChips button").forEach(b => b.classList.remove("active"));
+            if (btn) btn.classList.add("active");
+            renderStoreCatalog(brand, currentCatalogSort);
+        }
+
+        function filterCatalogCategory(cat) {
+            const section = document.getElementById("productos");
+            if (section) section.scrollIntoView({ behavior: 'smooth' });
+
+            const chips = Array.from(document.querySelectorAll("#catalogFilterChips button"));
+            if (cat === 'Smartphones') {
+                filterCatalogBrand('ALL', chips[0]);
+            } else if (cat === 'Accesorios') {
+                const accChip = chips.find(b => b.textContent.trim().toLowerCase() === 'accesorios') || chips[chips.length - 1];
+                filterCatalogBrand('Accesorios', accChip);
+            } else {
+                const targetChip = chips.find(b => b.textContent.trim().toLowerCase() === cat.toLowerCase());
+                if (targetChip) {
+                    filterCatalogBrand(cat, targetChip);
+                } else {
+                    filterCatalogBrand('ALL', chips[0]);
+                }
+            }
+        }
+
+        function sortStoreCatalog(sortType) {
+            renderStoreCatalog(currentCatalogBrand, sortType);
+        }
+
+        // AGREGAR AL CARRITO
+        function addToCart(productId) {
+            const prod = appData.products.find(p => p.id === productId);
+            if (!prod) return;
+
+            if (prod.stock <= 0) {
+                showToast("Lo sentimos, este equipo está agotado temporalmente.", "danger");
+                return;
+            }
+
+            const existing = storeCart.find(item => item.id === productId);
+            if (existing) {
+                if (existing.qty >= prod.stock) {
+                    showToast(`Solo contamos con ${prod.stock} unidades disponibles de este modelo.`, "warning");
+                    openCartDrawer();
+                    return;
+                }
+                existing.qty++;
+            } else {
+                storeCart.push({
+                    id: prod.id,
+                    name: prod.name,
+                    brand: prod.brand,
+                    price: prod.price,
+                    image: prod.image,
+                    qty: 1
+                });
+            }
+
+            saveState();
+            updateCartBadge();
+            updateCartDrawer();
+            showToast(`¡${prod.name} añadido al carrito!`, "success");
+            openCartDrawer();
+        }
+
+        function updateCartBadge() {
+            const totalCount = storeCart.reduce((acc, it) => acc + it.qty, 0);
+            const badges = document.querySelectorAll(".cart-count");
+            badges.forEach(b => b.textContent = totalCount);
+            const drawerCount = document.getElementById("cartDrawerCount");
+            if (drawerCount) drawerCount.textContent = totalCount;
+        }
+
+        function openCartDrawer() {
+            updateCartDrawer();
+            document.getElementById("cartDrawerOverlay")?.classList.add("active");
+            document.getElementById("cartDrawer")?.classList.add("active");
+        }
+
+        function closeCartDrawer() {
+            document.getElementById("cartDrawerOverlay")?.classList.remove("active");
+            document.getElementById("cartDrawer")?.classList.remove("active");
+        }
+
+        function updateCartDrawer() {
+            const container = document.getElementById("cartItemsContainer");
+            if (!container) return;
+
+            if (storeCart.length === 0) {
+                container.innerHTML = `
+                    <div class="cart-empty-box">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <h4 style="font-size:16px; font-weight:700; color:#111; margin-bottom:6px;">Tu carrito está vacío</h4>
+                        <p style="font-size:13px; color:#777; margin-bottom:1.5rem;">Explora los mejores smartphones y accesorios en nuestra tienda.</p>
+                        <button class="btn-mz btn-mz-primary" onclick="closeCartDrawer(); window.location.hash='#productos';">Explorar Celulares</button>
+                    </div>
+                `;
+                document.getElementById("cartSubtotalText").textContent = "$0 MXN";
+                document.getElementById("cartShippingText").textContent = "$0 MXN";
+                document.getElementById("cartTotalText").textContent = "$0 MXN";
+                document.getElementById("shippingProgressFill").style.width = "0%";
+                document.getElementById("shippingStatusText").textContent = "Envío gratis en compras mayores a $5,000 MXN";
+                const btn = document.getElementById("btnCartCheckout");
+                if (btn) btn.disabled = true;
+                return;
+            }
+
+            const btn = document.getElementById("btnCartCheckout");
+            if (btn) btn.disabled = false;
+
+            let subtotal = 0;
+            container.innerHTML = "";
+
+            storeCart.forEach(it => {
+                const itemTotal = it.price * it.qty;
+                subtotal += itemTotal;
+
+                const row = document.createElement("div");
+                row.className = "cart-item-row";
+                row.innerHTML = `
+                    <img src="${it.image}" alt="${it.name}" class="cart-item-img" onerror="this.src='https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300'">
+                    <div class="cart-item-meta">
+                        <h4>${it.name}</h4>
+                        <span>${it.brand}</span>
+                        <div class="cart-item-price">${formatCurrency(it.price)} c/u</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <div class="mz-stock-stepper">
+                            <button class="mz-stock-btn" onclick="changeCartQty('${it.id}', -1)">-</button>
+                            <span class="mz-stock-val">${it.qty}</span>
+                            <button class="mz-stock-btn" onclick="changeCartQty('${it.id}', 1)">+</button>
+                        </div>
+                        <button class="cart-del-btn" onclick="removeCartItem('${it.id}')" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            // Lógica de Envío Gratis ($5,000 MXN)
+            const freeShippingLimit = 5000;
+            let shippingFee = 0;
+            const progressFill = document.getElementById("shippingProgressFill");
+            const progressText = document.getElementById("shippingStatusText");
+
+            if (subtotal >= freeShippingLimit) {
+                shippingFee = 0;
+                progressFill.style.width = "100%";
+                progressText.innerHTML = `🎉 <strong style="color:#059669;">¡Felicidades! Tienes Envío Gratis a domicilio</strong>`;
+                document.getElementById("cartShippingText").innerHTML = `<span style="color:#059669; font-weight:700;">¡GRATIS!</span>`;
+            } else {
+                shippingFee = 180;
+                const remaining = freeShippingLimit - subtotal;
+                const pct = Math.min(100, Math.round((subtotal / freeShippingLimit) * 100));
+                progressFill.style.width = `${pct}%`;
+                progressText.innerHTML = `Te faltan <strong>${formatCurrency(remaining)}</strong> para obtener <strong>Envío Gratis</strong> 🚚`;
+                document.getElementById("cartShippingText").textContent = formatCurrency(shippingFee);
+            }
+
+            const grandTotal = subtotal + shippingFee;
+            document.getElementById("cartSubtotalText").textContent = formatCurrency(subtotal);
+            document.getElementById("cartTotalText").textContent = formatCurrency(grandTotal);
+        }
+
+        function changeCartQty(prodId, delta) {
+            const item = storeCart.find(it => it.id === prodId);
+            const prod = appData.products.find(p => p.id === prodId);
+            if (!item) return;
+
+            if (delta > 0 && prod && item.qty >= prod.stock) {
+                showToast(`Stock máximo alcanzado (${prod.stock} unidades en existencia).`, "warning");
+                return;
+            }
+
+            item.qty += delta;
+            if (item.qty <= 0) {
+                storeCart = storeCart.filter(it => it.id !== prodId);
+            }
+
+            saveState();
+            updateCartBadge();
+            updateCartDrawer();
+        }
+
+        function removeCartItem(prodId) {
+            storeCart = storeCart.filter(it => it.id !== prodId);
+            saveState();
+            updateCartBadge();
+            updateCartDrawer();
+            showToast("Producto removido del carrito", "info");
+        }
+
+        // BÚSQUEDA FLOTANTE
+        function openSearchModal() {
+            const modal = document.getElementById("searchModal");
+            if (modal) {
+                modal.classList.add("active");
+                const input = document.getElementById("storeSearchInput");
+                if (input) {
+                    input.value = "";
+                    input.focus();
+                    handleStoreSearch("");
+                }
+            }
+        }
+
+        function closeSearchModal() {
+            document.getElementById("searchModal")?.classList.remove("active");
+        }
+
+        function handleStoreSearch(val) {
+            const container = document.getElementById("searchResultsContainer");
+            if (!container) return;
+
+            const q = val.trim().toLowerCase();
+            if (!q) {
+                container.innerHTML = `
+                    <div style="padding: 2.5rem; text-align: center; color: #888;">
+                        <i class="fa-solid fa-mobile-screen" style="font-size: 32px; color: #ddd; margin-bottom: 10px; display: block;"></i>
+                        Escribe el modelo o marca (ej: iPhone, Galaxy, Xiaomi)...
+                    </div>
+                `;
+                return;
+            }
+
+            const results = appData.products.filter(p => {
+                return p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q) || (p.specs && p.specs.toLowerCase().includes(q));
+            });
+
+            if (results.length === 0) {
+                container.innerHTML = `
+                    <div style="padding: 2.5rem; text-align: center; color: #888;">
+                        No se encontraron coincidencias para "<strong>${val}</strong>".
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = "";
+            results.forEach(p => {
+                const item = document.createElement("div");
+                item.className = "search-result-item";
+                item.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <img src="${p.image}" style="width:44px; height:44px; border-radius:6px; object-fit:cover; border:1px solid #eee;" onerror="this.src='https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300'">
+                        <div>
+                            <div style="font-weight:700; font-size:14px; color:#111;">${p.name}</div>
+                            <div style="font-size:11px; color:#777;">${p.brand} · ${p.specs || p.category}</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <div style="font-weight:800; font-size:14px; color:#111;">${formatCurrency(p.price)}</div>
+                        <button class="btn-mz btn-mz-primary btn-mz-sm" onclick="addToCart('${p.id}'); closeSearchModal();">
+                            + Agregar
+                        </button>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        // ----------------------------------------------------
+        // 4. AUTENTICACIÓN DE CLIENTES (LOGIN / REGISTRO)
+        // ----------------------------------------------------
+        let redirectAfterCustomerAuth = false;
+
+        function updateCustomerNavUI() {
+            const btn = document.getElementById("customerNavBtn");
+            const label = document.getElementById("customerNavLabel");
+            if (!btn || !label) return;
+
+            if (currentCustomer) {
+                const firstName = currentCustomer.name.split(" ")[0];
+                label.innerHTML = `Hola, <strong>${firstName}</strong>`;
+                btn.title = `Cuenta de ${currentCustomer.name} (Clic para ver perfil y compras)`;
+            } else {
+                label.textContent = "Iniciar Sesión";
+                btn.title = "Cuenta de Cliente / Iniciar Sesión";
+            }
+        }
+
+        function handleCustomerNavClick() {
+            if (currentCustomer) {
+                openCustomerProfileModal();
+            } else {
+                openCustomerAuthModal(false);
+            }
+        }
+
+        function openCustomerAuthModal(forCheckout = false) {
+            redirectAfterCustomerAuth = forCheckout;
+            const notice = document.getElementById("customerCheckoutNotice");
+            if (notice) notice.style.display = forCheckout ? "block" : "none";
+
+            switchCustomerAuthTab('login');
+            document.getElementById("customerAuthModal")?.classList.add("active");
+            const emailInput = document.getElementById("custLoginEmail");
+            if (emailInput) {
+                emailInput.focus();
+            }
+        }
+
+        function closeCustomerAuthModal() {
+            document.getElementById("customerAuthModal")?.classList.remove("active");
+        }
+
+        function switchCustomerAuthTab(tab) {
+            const loginTab = document.getElementById("tabCustomerLogin");
+            const regTab = document.getElementById("tabCustomerRegister");
+            const loginForm = document.getElementById("customerLoginForm");
+            const regForm = document.getElementById("customerRegisterForm");
+
+            if (tab === 'login') {
+                loginTab?.classList.add("active");
+                regTab?.classList.remove("active");
+                if (loginForm) loginForm.style.display = "block";
+                if (regForm) regForm.style.display = "none";
+            } else {
+                regTab?.classList.add("active");
+                loginTab?.classList.remove("active");
+                if (loginForm) loginForm.style.display = "none";
+                if (regForm) regForm.style.display = "block";
+            }
+        }
+
+        function quickFillCustomerAccount() {
+            document.getElementById("custLoginEmail").value = "cliente@mobilezone.com";
+            document.getElementById("custLoginPassword").value = "cliente123";
+        }
+
+        function handleCustomerLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById("custLoginEmail").value.trim().toLowerCase();
+            const pwd = document.getElementById("custLoginPassword").value;
+
+            const cust = appCustomers.find(c => c.email.toLowerCase() === email);
+            if (!cust) {
+                showToast("No existe una cuenta registrada con este correo.", "warning");
+                return;
+            }
+
+            if (cust.password !== pwd) {
+                showToast("Contraseña incorrecta. Por favor verifica tus datos.", "danger");
+                const pwdInput = document.getElementById("custLoginPassword");
+                if (pwdInput) {
+                    pwdInput.value = "";
+                    pwdInput.focus();
+                }
+                return;
+            }
+
+            currentCustomer = cust;
+            saveState();
+            updateCustomerNavUI();
+            closeCustomerAuthModal();
+            showToast(`¡Bienvenido(a) de nuevo, ${cust.name}!`, "success");
+
+            if (redirectAfterCustomerAuth) {
+                redirectAfterCustomerAuth = false;
+                setTimeout(openCheckoutModal, 250);
+            }
+        }
+
+        function handleCustomerRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById("custRegName").value.trim();
+            const email = document.getElementById("custRegEmail").value.trim().toLowerCase();
+            const phone = document.getElementById("custRegPhone").value.trim();
+            const address = document.getElementById("custRegAddress").value.trim();
+            const pwd = document.getElementById("custRegPassword").value;
+
+            const existing = appCustomers.find(c => c.email.toLowerCase() === email);
+            if (existing) {
+                showToast("Ya existe una cuenta con este correo. Inicia sesión directamente.", "warning");
+                switchCustomerAuthTab('login');
+                document.getElementById("custLoginEmail").value = email;
+                return;
+            }
+
+            const newCust = {
+                id: "cust-" + Date.now(),
+                name,
+                email,
+                phone,
+                address,
+                password: pwd
+            };
+
+            appCustomers.push(newCust);
+            currentCustomer = newCust;
+            saveState();
+            updateCustomerNavUI();
+            closeCustomerAuthModal();
+            showToast(`¡Cuenta creada con éxito! Bienvenido(a) ${name}`, "success");
+
+            if (redirectAfterCustomerAuth) {
+                redirectAfterCustomerAuth = false;
+                setTimeout(openCheckoutModal, 250);
+            }
+        }
+
+        function openCustomerProfileModal() {
+            if (!currentCustomer) return;
+            const body = document.getElementById("customerProfileBody");
+            if (!body) return;
+
+            const initials = currentCustomer.name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase();
+
+            // Filtrar pedidos realizados por este cliente
+            const myOrders = appData.sales.filter(s => {
+                return (s.email && s.email.toLowerCase() === currentCustomer.email.toLowerCase()) ||
+                       (s.customer && s.customer.toLowerCase() === currentCustomer.name.toLowerCase());
+            });
+
+            let ordersHtml = "";
+            if (myOrders.length === 0) {
+                ordersHtml = `<div style="padding:15px; text-align:center; color:#888; font-size:12px;">Aún no tienes compras registradas con esta cuenta.</div>`;
+            } else {
+                ordersHtml = myOrders.map(o => `
+                    <div class="customer-order-item">
+                        <div>
+                            <div style="font-weight:700; color:#111;">Folio #${o.id}</div>
+                            <div style="color:#777; font-size:11px;">${o.date} · ${o.items.map(it => it.name).join(", ")}</div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-weight:800; color:#059669;">${formatCurrency(o.total)}</div>
+                            <span class="mz-badge mz-badge-success" style="font-size:10px;">${o.status}</span>
+                        </div>
+                    </div>
+                `).join("");
+            }
+
+            body.innerHTML = `
+                <div class="customer-profile-card">
+                    <div class="customer-profile-header">
+                        <div class="customer-profile-avatar">${initials}</div>
+                        <div>
+                            <h3 style="font-size:16px; margin-bottom:2px; color:#111;">${currentCustomer.name}</h3>
+                            <p style="font-size:12px; color:#777;"><i class="fa-solid fa-envelope"></i> ${currentCustomer.email}</p>
+                        </div>
+                    </div>
+                    <div style="font-size:12px; line-height:1.6; color:#444; border-top:1px solid #e7e7e7; padding-top:10px;">
+                        <div><strong>Teléfono:</strong> ${currentCustomer.phone || "No especificado"}</div>
+                        <div><strong>Dirección de Entrega:</strong> ${currentCustomer.address || "No especificada"}</div>
+                    </div>
+                </div>
+
+                <h4 style="font-size:13px; font-weight:700; color:#111; margin-bottom:8px; display:flex; justify-content:space-between;">
+                    <span><i class="fa-solid fa-bag-shopping"></i> Mis Pedidos en MobileZone (${myOrders.length})</span>
+                </h4>
+                <div class="customer-orders-list">
+                    ${ordersHtml}
+                </div>
+            `;
+
+            document.getElementById("customerProfileModal")?.classList.add("active");
+        }
+
+        function closeCustomerProfileModal() {
+            document.getElementById("customerProfileModal")?.classList.remove("active");
+        }
+
+        function logoutCustomer() {
+            currentCustomer = null;
+            saveState();
+            updateCustomerNavUI();
+            closeCustomerProfileModal();
+            showToast("Sesión de cliente cerrada con éxito.", "info");
+        }
+
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            if (input.type === "password") {
+                input.type = "text";
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+            } else {
+                input.type = "password";
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+            }
+        }
+
+        // CHECKOUT & COMPRA CLIENTE
+        function openCheckoutModal() {
+            if (storeCart.length === 0) {
+                showToast("Tu carrito está vacío", "warning");
+                return;
+            }
+
+            // Exigir inicio de sesión de cliente para comprar
+            if (!currentCustomer) {
+                closeCartDrawer();
+                openCustomerAuthModal(true); // Redirige al checkout una vez logueado
+                return;
+            }
+
+            closeCartDrawer();
+
+            const subtotal = storeCart.reduce((acc, it) => acc + (it.price * it.qty), 0);
+            const shipping = subtotal >= 5000 ? 0 : 180;
+            const total = subtotal + shipping;
+            const itemsCount = storeCart.reduce((acc, it) => acc + it.qty, 0);
+
+            document.getElementById("checkoutItemsCount").textContent = `${itemsCount} unidades`;
+            document.getElementById("checkoutShippingFee").textContent = shipping === 0 ? "¡Envío Gratis!" : formatCurrency(shipping);
+            document.getElementById("checkoutTotalText").textContent = formatCurrency(total);
+
+            // Prellenar automáticamente con la cuenta del cliente logueado
+            const nameInput = document.getElementById("checkoutCustName");
+            const emailInput = document.getElementById("checkoutCustEmail");
+            const phoneInput = document.getElementById("checkoutCustPhone");
+            const addrInput = document.getElementById("checkoutCustAddress");
+
+            if (nameInput) nameInput.value = currentCustomer.name || "";
+            if (emailInput) emailInput.value = currentCustomer.email || "";
+            if (phoneInput) phoneInput.value = currentCustomer.phone || "";
+            if (addrInput) addrInput.value = currentCustomer.address || "";
+
+            document.getElementById("checkoutModal")?.classList.add("active");
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById("checkoutModal")?.classList.remove("active");
+        }
+
+        function processStoreCheckout(e) {
+            e.preventDefault();
+            const name = document.getElementById("checkoutCustName").value.trim();
+            const email = document.getElementById("checkoutCustEmail").value.trim();
+            const phone = document.getElementById("checkoutCustPhone").value.trim();
+            const address = document.getElementById("checkoutCustAddress").value.trim();
+            const payment = document.getElementById("checkoutCustPayment").value;
+
+            // Validar stock para cada producto
+            for (const item of storeCart) {
+                const prod = appData.products.find(p => p.id === item.id);
+                if (!prod || prod.stock < item.qty) {
+                    showToast(`Stock insuficiente para "${item.name}". Solo quedan ${prod ? prod.stock : 0} unidades.`, "danger");
+                    return;
+                }
+            }
+
+            // Descontar inventario en tiempo real
+            storeCart.forEach(item => {
+                const prod = appData.products.find(p => p.id === item.id);
+                if (prod) prod.stock -= item.qty;
+            });
+
+            const subtotal = storeCart.reduce((acc, it) => acc + (it.price * it.qty), 0);
+            const shipping = subtotal >= 5000 ? 0 : 180;
+            const grandTotal = subtotal + shipping;
+
+            // Generar folio y registrar venta en la base de datos de administración
+            const newOrderFolio = "MZ-WEB-" + Math.floor(1000 + Math.random() * 9000);
+            const orderDate = new Date().toISOString().replace('T', ' ').substring(0, 16);
+
+            const newSale = {
+                id: newOrderFolio,
+                date: orderDate,
+                customer: name,
+                email: email,
+                phone: phone,
+                address: address,
+                branch: "Tienda Online",
+                seller: "Portal Web E-Commerce",
+                items: JSON.parse(JSON.stringify(storeCart)),
+                paymentMethod: payment,
+                total: grandTotal,
+                status: "Completada"
+            };
+
+            appData.sales.unshift(newSale);
+            storeCart = [];
+            saveState();
+
+            closeCheckoutModal();
+            updateCartBadge();
+            renderStoreCatalog();
+
+            // Llenar detalles del pedido exitoso
+            const detailsBox = document.getElementById("orderSuccessDetails");
+            if (detailsBox) {
+                detailsBox.innerHTML = `
+                    <div><strong>Folio de Compra:</strong> <span style="font-family:monospace; font-weight:800; color:#111;">#${newSale.id}</span></div>
+                    <div><strong>Cliente:</strong> ${name}</div>
+                    <div><strong>Dirección de Entrega:</strong> ${address}</div>
+                    <div><strong>Método de Pago:</strong> ${payment}</div>
+                    <div><strong>Total Liquidado:</strong> <strong style="color:#059669;">${formatCurrency(grandTotal)}</strong></div>
+                    <div style="margin-top:6px; font-size:11px; color:#555;"><i class="fa-solid fa-envelope-circle-check" style="color:#059669;"></i> Hemos enviado el comprobante fiscal y la guía de rastreo a <strong>${email}</strong>.</div>
+                `;
+            }
+
+            document.getElementById("orderSuccessModal")?.classList.add("active");
+            showToast(`¡Orden #${newSale.id} confirmada con éxito!`, "success");
+        }
+
+        function closeOrderSuccessModal() {
+            document.getElementById("orderSuccessModal")?.classList.remove("active");
+        }
+
+        // ----------------------------------------------------
+        // 5. CONTROL DE ACCESO CORPORATIVO Y ROLES CON CONTRASEÑA
+        // ----------------------------------------------------
+        function handleAdminAccessClick() {
+            if (!currentAdminUser) {
+                openAdminAuthModal();
+            } else {
+                switchToAdminView();
+            }
+        }
+
+        function openAdminAuthModal() {
+            populateAdminUserSelect();
+            document.getElementById("adminAuthModal")?.classList.add("active");
+            const pwdInput = document.getElementById("adminLoginPassword");
+            if (pwdInput) {
+                pwdInput.value = "";
+                setTimeout(() => pwdInput.focus(), 150);
+            }
+        }
+
+        function closeAdminAuthModal() {
+            document.getElementById("adminAuthModal")?.classList.remove("active");
+        }
+
+        function populateAdminUserSelect() {
+            const select = document.getElementById("adminLoginUserSelect");
+            if (!select) return;
+            select.innerHTML = "";
+            appData.users.forEach(u => {
+                const opt = document.createElement("option");
+                opt.value = u.id;
+                opt.textContent = `${u.name} — [${u.role}] (${u.branch})`;
+                select.appendChild(opt);
+            });
+            if (appData.users.length > 0) {
+                select.value = appData.users[0].id;
+                onAdminUserSelectChange(appData.users[0].id);
+            }
+        }
+
+        function onAdminUserSelectChange(userId) {
+            const user = appData.users.find(u => u.id === userId);
+            if (user) {
+                const emailInput = document.getElementById("adminLoginEmail");
+                if (emailInput) emailInput.value = user.email;
+            }
+        }
+
+        function quickFillAdminAuth(userId, pwd) {
+            const select = document.getElementById("adminLoginUserSelect");
+            if (select) {
+                select.value = userId;
+                onAdminUserSelectChange(userId);
+            }
+            const pwdInput = document.getElementById("adminLoginPassword");
+            if (pwdInput) pwdInput.value = pwd;
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const userId = document.getElementById("adminLoginUserSelect").value;
+            const pwd = document.getElementById("adminLoginPassword").value.trim();
+
+            const user = appData.users.find(u => u.id === userId);
+            if (!user) {
+                showToast("Usuario no encontrado en la base de datos.", "danger");
+                return;
+            }
+
+            if (user.password !== pwd) {
+                showToast(`Contraseña incorrecta para el rol de ${user.name} (${user.role}). Acceso denegado.`, "danger");
+                const pwdInput = document.getElementById("adminLoginPassword");
+                if (pwdInput) {
+                    pwdInput.value = "";
+                    pwdInput.focus();
+                }
+                return;
+            }
+
+            currentAdminUser = user;
+            appData.currentRole = user.role;
+            if (user.branch !== "Todas las Sucursales") {
+                appData.currentBranch = user.branch;
+            }
+            saveState();
+
+            closeAdminAuthModal();
+            showToast(`¡Acceso concedido! Sesión iniciada como ${user.name} [${user.role}]`, "success");
+            switchToAdminView();
+        }
+
+        function logoutAdmin() {
+            currentAdminUser = null;
+            saveState();
+            showToast("Sesión administrativa cerrada.", "info");
+            switchToStoreView();
+        }
+
+        function openAdminSwitchModal() {
+            const select = document.getElementById("switchUserSelect");
+            if (select) {
+                select.innerHTML = "";
+                appData.users.forEach(u => {
+                    const isCurrent = currentAdminUser && currentAdminUser.id === u.id;
+                    const opt = document.createElement("option");
+                    opt.value = u.id;
+                    opt.textContent = `${u.name} — [${u.role}] ${isCurrent ? '(Activo actualmente)' : ''}`;
+                    if (isCurrent) opt.disabled = true;
+                    select.appendChild(opt);
+                });
+                const available = appData.users.find(u => !currentAdminUser || u.id !== currentAdminUser.id);
+                if (available) select.value = available.id;
+            }
+            const pwdInput = document.getElementById("switchUserPassword");
+            if (pwdInput) {
+                pwdInput.value = "";
+                setTimeout(() => pwdInput.focus(), 150);
+            }
+            document.getElementById("adminSwitchModal")?.classList.add("active");
+        }
+
+        function closeAdminSwitchModal() {
+            document.getElementById("adminSwitchModal")?.classList.remove("active");
+        }
+
+        function onSwitchUserSelectChange(userId) {
+            const pwdInput = document.getElementById("switchUserPassword");
+            if (pwdInput) {
+                pwdInput.value = "";
+                pwdInput.focus();
+            }
+        }
+
+        function handleAdminSwitchSubmit(e) {
+            e.preventDefault();
+            const targetId = document.getElementById("switchUserSelect").value;
+            const pwd = document.getElementById("switchUserPassword").value.trim();
+
+            const targetUser = appData.users.find(u => u.id === targetId);
+            if (!targetUser) {
+                showToast("Colaborador no encontrado.", "danger");
+                return;
+            }
+
+            if (targetUser.password !== pwd) {
+                showToast(`Contraseña incorrecta para ${targetUser.name} (${targetUser.role}). Cambio de rol rechazado.`, "danger");
+                const pwdInput = document.getElementById("switchUserPassword");
+                if (pwdInput) {
+                    pwdInput.value = "";
+                    pwdInput.focus();
+                }
+                return;
+            }
+
+            currentAdminUser = targetUser;
+            appData.currentRole = targetUser.role;
+            if (targetUser.branch !== "Todas las Sucursales") {
+                appData.currentBranch = targetUser.branch;
+                const branchSelect = document.getElementById("globalBranchSelect");
+                if (branchSelect) branchSelect.value = targetUser.branch;
+            } else {
+                appData.currentBranch = "ALL";
+                const branchSelect = document.getElementById("globalBranchSelect");
+                if (branchSelect) branchSelect.value = "ALL";
+            }
+            saveState();
+
+            closeAdminSwitchModal();
+            applyActiveAdminSessionUI();
+            renderDashboard();
+            renderInventory();
+            renderSales();
+            renderStatistics();
+            renderUsers();
+            showToast(`¡Rol actualizado! Sesión activa: ${targetUser.name} [${targetUser.role}]`, "success");
+        }
+
+        function applyActiveAdminSessionUI() {
+            if (!currentAdminUser) return;
+
+            const role = currentAdminUser.role;
+            const name = currentAdminUser.name;
+            const initials = name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase();
+
+            // Actualizar Sidebar
+            const avatar = document.getElementById("sidebarAvatar");
+            if (avatar) avatar.textContent = initials;
+            const sideName = document.getElementById("sidebarUserName");
+            if (sideName) sideName.textContent = name;
+            const sideBadge = document.getElementById("sidebarUserRoleBadge");
+            if (sideBadge) {
+                if (role === "ADMIN") {
+                    sideBadge.className = "admin-role-badge role-admin";
+                    sideBadge.innerHTML = `<i class="fa-solid fa-shield-halved"></i> ADMIN`;
+                } else if (role === "VENDEDOR") {
+                    sideBadge.className = "admin-role-badge role-vendedor";
+                    sideBadge.innerHTML = `<i class="fa-solid fa-tag"></i> VENDEDOR`;
+                } else if (role === "SUPERVISOR") {
+                    sideBadge.className = "admin-role-badge role-supervisor";
+                    sideBadge.innerHTML = `<i class="fa-solid fa-boxes-stacked"></i> SUPERVISOR`;
+                }
+            }
+
+            // Actualizar Top Header
+            const topName = document.getElementById("topHeaderUserName");
+            if (topName) topName.textContent = name;
+            const topRole = document.getElementById("topHeaderUserRole");
+            if (topRole) {
+                topRole.textContent = role;
+                topRole.className = `session-role-pill ${role === 'VENDEDOR' ? 'role-vendedor' : (role === 'SUPERVISOR' ? 'role-supervisor' : '')}`;
+            }
+
+            // Textos descriptivos de rol en la interfaz
+            document.querySelectorAll(".lbl-current-role").forEach(lbl => lbl.textContent = role);
+
+            // Banners de restricción de seguridad
+            const statsBanner = document.getElementById("statsRestrictedBanner");
+            const statsContent = document.getElementById("statsFullContent");
+            const usersBanner = document.getElementById("usersRestrictedBanner");
+            const usersContent = document.getElementById("usersFullContent");
+
+            if (role === "ADMIN") {
+                if (statsBanner) statsBanner.style.display = "none";
+                if (statsContent) statsContent.style.display = "block";
+                if (usersBanner) usersBanner.style.display = "none";
+                if (usersContent) usersContent.style.display = "block";
+            } else {
+                // VENDEDOR y SUPERVISOR no tienen acceso a balances financieros de gerencia ni a gestión de usuarios
+                if (statsBanner) statsBanner.style.display = "block";
+                if (statsContent) statsContent.style.display = "none";
+                if (usersBanner) usersBanner.style.display = "block";
+                if (usersContent) usersContent.style.display = "none";
+            }
+        }
+
+        function initAdminControls() {
+            const branchSelect = document.getElementById("globalBranchSelect");
+            if (branchSelect) {
+                branchSelect.addEventListener("change", (e) => {
+                    appData.currentBranch = e.target.value;
+                    appData.statsQuery.branch = e.target.value;
+                    const statBranch = document.getElementById("statBranchSelect");
+                    if (statBranch) statBranch.value = e.target.value;
+
+                    renderDashboard();
+                    renderInventory();
+                    renderSales();
+                    renderStatistics();
+                });
+            }
+        }
+
+        // ----------------------------------------------------
+        // 5. INVENTARIO ADMIN
+        // ----------------------------------------------------
+        function renderInventory() {
+            const tbody = document.getElementById("inventoryTableBody");
+            if (!tbody) return;
+
+            const searchVal = (document.getElementById("invSearchInput")?.value || "").toLowerCase();
+            const catVal = document.getElementById("invCategorySelect")?.value || "ALL";
+            const statusVal = document.getElementById("invStatusSelect")?.value || "ALL";
+
+            let filtered = appData.products.filter(p => {
+                if (appData.currentBranch !== "ALL" && p.branch !== appData.currentBranch) return false;
+                const matchSearch = p.name.toLowerCase().includes(searchVal) || p.sku.toLowerCase().includes(searchVal) || p.brand.toLowerCase().includes(searchVal);
+                if (!matchSearch) return false;
+                if (catVal !== "ALL" && p.category !== catVal) return false;
+                if (statusVal === "NORMAL" && p.stock <= p.minStock) return false;
+                if (statusVal === "LOW" && (p.stock > p.minStock || p.stock === 0)) return false;
+                if (statusVal === "OUT" && p.stock > 0) return false;
+                return true;
+            });
+
+            // KPIs
+            const totalStockUnits = appData.products.reduce((acc, p) => acc + p.stock, 0);
+            const lowStockCount = appData.products.filter(p => p.stock <= p.minStock && p.stock > 0).length;
+            const totalInventoryVal = appData.products.reduce((acc, p) => acc + (p.price * p.stock), 0);
+
+            const kpiTotal = document.getElementById("kpiInvTotal");
+            const kpiStock = document.getElementById("kpiInvStock");
+            const kpiLow = document.getElementById("kpiInvLow");
+            const kpiVal = document.getElementById("kpiInvValue");
+
+            if (kpiTotal) kpiTotal.textContent = appData.products.length;
+            if (kpiStock) kpiStock.textContent = `${totalStockUnits} u.`;
+            if (kpiLow) kpiLow.textContent = lowStockCount;
+            if (kpiVal) kpiVal.textContent = formatCurrency(totalInventoryVal);
+
+            const sbBadge = document.getElementById("sidebarLowStockBadge");
+            if (sbBadge) {
+                sbBadge.textContent = lowStockCount;
+                sbBadge.style.display = lowStockCount > 0 ? "inline-block" : "none";
+            }
+
+            tbody.innerHTML = "";
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2rem; color:#777;">No hay productos con los filtros seleccionados.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                let badgeClass = "mz-badge-success";
+                let badgeText = "En Stock";
+                if (p.stock === 0) {
+                    badgeClass = "mz-badge-danger";
+                    badgeText = "Agotado";
+                } else if (p.stock <= p.minStock) {
+                    badgeClass = "mz-badge-warning";
+                    badgeText = `Stock Bajo (${p.stock})`;
+                }
+
+                const isAdmin = appData.currentRole === "ADMIN";
+                const isSupervisor = appData.currentRole === "SUPERVISOR";
+                const showCost = isAdmin || isSupervisor;
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>
+                        <div class="admin-prod-cell">
+                            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300'">
+                            <div class="admin-prod-details">
+                                <h4>${p.name}</h4>
+                                <span>${p.brand} · ${p.category}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td><code>${p.sku}</code></td>
+                    <td><span>${p.branch}</span></td>
+                    <td><span class="mz-badge ${badgeClass}">${badgeText}</span></td>
+                    <td>
+                        <div class="mz-stock-stepper">
+                            <button type="button" class="mz-stock-btn" onclick="adjustProductStock('${p.id}', -1)">-</button>
+                            <span class="mz-stock-val">${p.stock}</span>
+                            <button type="button" class="mz-stock-btn" onclick="adjustProductStock('${p.id}', 1)">+</button>
+                        </div>
+                    </td>
+                    <td>
+                        <strong>${formatCurrency(p.price)}</strong>
+                        ${showCost ? `<br><small style="color:#777; font-size:11px;">Costo: ${formatCurrency(p.cost)}</small>` : '<br><small style="color:#aaa; font-size:10px;">Costo: Confidencial</small>'}
+                    </td>
+                    <td>
+                        <div style="display:flex; gap:4px;">
+                            <button class="btn-mz btn-mz-secondary btn-mz-sm" onclick="editProduct('${p.id}')" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>
+                            ${isAdmin ? `<button class="btn-mz btn-mz-danger btn-mz-sm" onclick="deleteProduct('${p.id}')" title="Eliminar"><i class="fa-solid fa-trash"></i></button>` : ''}
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function adjustProductStock(prodId, delta) {
+            const prod = appData.products.find(p => p.id === prodId);
+            if (!prod) return;
+            const newStock = prod.stock + delta;
+            if (newStock < 0) {
+                showToast("El inventario no puede ser inferior a 0.", "warning");
+                return;
+            }
+            prod.stock = newStock;
+            saveState();
+            renderInventory();
+            renderDashboard();
+            renderStoreCatalog();
+            showToast(`Stock de "${prod.name}" ajustado a ${newStock} u.`, "success");
+        }
+
+        function deleteProduct(prodId) {
+            if (!confirm("¿Está seguro de eliminar este producto del inventario y del catálogo?")) return;
+            appData.products = appData.products.filter(p => p.id !== prodId);
+            saveState();
+            renderInventory();
+            renderDashboard();
+            renderStoreCatalog();
+            showToast("Producto eliminado correctamente", "danger");
+        }
+
+        function openAddProductModal() {
+            const modal = document.getElementById("productModal");
+            const form = document.getElementById("productForm");
+            if (!modal || !form) return;
+            form.reset();
+            document.getElementById("productIdInput").value = "";
+            document.getElementById("modalProductTitle").textContent = "Registrar Nuevo Celular";
+            modal.classList.add("active");
+        }
+
+        function editProduct(prodId) {
+            const prod = appData.products.find(p => p.id === prodId);
+            if (!prod) return;
+            document.getElementById("productIdInput").value = prod.id;
+            document.getElementById("prodName").value = prod.name;
+            document.getElementById("prodSku").value = prod.sku;
+            document.getElementById("prodBrand").value = prod.brand;
+            document.getElementById("prodCategory").value = prod.category;
+            document.getElementById("prodBranch").value = prod.branch;
+            document.getElementById("prodCost").value = prod.cost;
+            document.getElementById("prodPrice").value = prod.price;
+            document.getElementById("prodStock").value = prod.stock;
+            document.getElementById("prodMinStock").value = prod.minStock;
+            document.getElementById("prodImage").value = prod.image;
+            document.getElementById("modalProductTitle").textContent = "Editar Producto";
+            document.getElementById("productModal")?.classList.add("active");
+        }
+
+        function saveProductFromForm(e) {
+            e.preventDefault();
+            const id = document.getElementById("productIdInput").value;
+            const name = document.getElementById("prodName").value.trim();
+            const sku = document.getElementById("prodSku").value.trim();
+            const brand = document.getElementById("prodBrand").value;
+            const category = document.getElementById("prodCategory").value;
+            const branch = document.getElementById("prodBranch").value;
+            const cost = parseFloat(document.getElementById("prodCost").value) || 0;
+            const price = parseFloat(document.getElementById("prodPrice").value) || 0;
+            const stock = parseInt(document.getElementById("prodStock").value) || 0;
+            const minStock = parseInt(document.getElementById("prodMinStock").value) || 4;
+            const image = document.getElementById("prodImage").value.trim() || "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=700";
+
+            if (id) {
+                const prod = appData.products.find(p => p.id === id);
+                if (prod) {
+                    Object.assign(prod, { name, sku, brand, category, branch, cost, price, stock, minStock, image });
+                    showToast("Producto actualizado en inventario y catálogo", "success");
+                }
+            } else {
+                appData.products.unshift({
+                    id: "prod-" + Date.now(),
+                    sku: sku || "MZ-" + Math.floor(1000 + Math.random() * 9000),
+                    name, brand, category, branch, cost, price, stock, minStock, image,
+                    specs: `${category} · ${brand} 5G`
+                });
+                showToast("Nuevo producto añadido al inventario y al catálogo", "success");
+            }
+
+            saveState();
+            closeAllModals();
+            renderInventory();
+            renderDashboard();
+            renderStoreCatalog();
+        }
+
+        // ----------------------------------------------------
+        // 6. VENTAS Y PUNTO DE VENTA (POS)
+        // ----------------------------------------------------
+        function renderSales() {
+            const tbody = document.getElementById("salesTableBody");
+            if (!tbody) return;
+
+            const searchVal = (document.getElementById("salesSearchInput")?.value || "").toLowerCase();
+            const branchVal = document.getElementById("salesBranchSelect")?.value || "ALL";
+            const statusVal = document.getElementById("salesStatusSelect")?.value || "ALL";
+
+            let filtered = appData.sales.filter(s => {
+                if (appData.currentBranch !== "ALL" && s.branch !== appData.currentBranch) return false;
+                if (branchVal !== "ALL" && s.branch !== branchVal) return false;
+                if (statusVal !== "ALL" && s.status !== statusVal) return false;
+                return s.id.toLowerCase().includes(searchVal) || s.customer.toLowerCase().includes(searchVal) || s.seller.toLowerCase().includes(searchVal);
+            });
+
+            // KPIs
+            const completed = appData.sales.filter(s => s.status === "Completada");
+            const totalRev = completed.reduce((acc, s) => acc + s.total, 0);
+            const avgTicket = completed.length > 0 ? Math.round(totalRev / completed.length) : 0;
+            const pendingCount = appData.sales.filter(s => s.status === "Pendiente").length;
+
+            const kpiRev = document.getElementById("kpiSalesRevenue");
+            const kpiCount = document.getElementById("kpiSalesCount");
+            const kpiAvg = document.getElementById("kpiSalesAvg");
+            const kpiPend = document.getElementById("kpiSalesPending");
+
+            if (kpiRev) kpiRev.textContent = formatCurrency(totalRev);
+            if (kpiCount) kpiCount.textContent = completed.length;
+            if (kpiAvg) kpiAvg.textContent = formatCurrency(avgTicket);
+            if (kpiPend) kpiPend.textContent = pendingCount;
+
+            tbody.innerHTML = "";
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding:2rem; color:#777;">No se encontraron registros de ventas.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach(s => {
+                let badgeClass = s.status === "Completada" ? "mz-badge-success" : (s.status === "Pendiente" ? "mz-badge-warning" : "mz-badge-danger");
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td><strong>#${s.id}</strong></td>
+                    <td>${s.date}</td>
+                    <td><strong>${s.customer}</strong></td>
+                    <td><span>${s.branch}</span></td>
+                    <td>${s.seller}</td>
+                    <td><small style="color:#666;">${s.paymentMethod}</small></td>
+                    <td><strong>${formatCurrency(s.total)}</strong></td>
+                    <td><span class="mz-badge ${badgeClass}">${s.status}</span></td>
+                    <td>
+                        <button class="btn-mz btn-mz-secondary btn-mz-sm" onclick="viewSaleTicket('${s.id}')"><i class="fa-solid fa-receipt"></i> Recibo</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openNewSaleModal() {
+            const modal = document.getElementById("newSaleModal");
+            const select = document.getElementById("saleProductSelect");
+            if (!modal || !select) return;
+
+            select.innerHTML = '<option value="">-- Seleccionar celular en existencia --</option>';
+            appData.products.filter(p => p.stock > 0).forEach(p => {
+                const opt = document.createElement("option");
+                opt.value = p.id;
+                opt.textContent = `${p.name} - ${formatCurrency(p.price)} (Stock: ${p.stock})`;
+                select.appendChild(opt);
+            });
+
+            document.getElementById("saleQty").value = "1";
+            document.getElementById("saleCustomer").value = "";
+            updateSaleModalTotals();
+            modal.classList.add("active");
+        }
+
+        function updateSaleModalTotals() {
+            const prodId = document.getElementById("saleProductSelect")?.value;
+            const qty = parseInt(document.getElementById("saleQty")?.value) || 1;
+            const prod = appData.products.find(p => p.id === prodId);
+
+            const subEl = document.getElementById("saleModalSubtotal");
+            const totEl = document.getElementById("saleModalTotal");
+
+            if (prod) {
+                const total = prod.price * qty;
+                if (subEl) subEl.textContent = formatCurrency(total);
+                if (totEl) totEl.textContent = formatCurrency(total);
+            } else {
+                if (subEl) subEl.textContent = "$0";
+                if (totEl) totEl.textContent = "$0";
+            }
+        }
+
+        function registerNewSale(e) {
+            e.preventDefault();
+            const prodId = document.getElementById("saleProductSelect").value;
+            const qty = parseInt(document.getElementById("saleQty").value) || 1;
+            const customer = document.getElementById("saleCustomer").value.trim() || "Cliente Mostrador";
+            const payment = document.getElementById("salePayment").value;
+            const branch = document.getElementById("saleBranchSelect").value;
+
+            const prod = appData.products.find(p => p.id === prodId);
+            if (!prod || prod.stock < qty) {
+                showToast(`Stock insuficiente. Solo quedan ${prod ? prod.stock : 0} unidades disponibles.`, "danger");
+                return;
+            }
+
+            prod.stock -= qty;
+
+            const sellerName = currentAdminUser ? currentAdminUser.name : (appData.currentRole === "VENDEDOR" ? "Laura Sánchez" : "Carlos Mendoza");
+
+            const newSale = {
+                id: "MZ-" + Math.floor(1100 + Math.random() * 8900),
+                date: new Date().toISOString().replace('T', ' ').substring(0, 16),
+                customer,
+                branch,
+                seller: sellerName,
+                items: [{ name: prod.name, qty, price: prod.price }],
+                paymentMethod: payment,
+                total: prod.price * qty,
+                status: "Completada"
+            };
+
+            // Acreditar métricas de venta al colaborador
+            if (currentAdminUser) {
+                const userInDb = appData.users.find(u => u.id === currentAdminUser.id);
+                if (userInDb) {
+                    userInDb.salesCount = (userInDb.salesCount || 0) + 1;
+                    userInDb.totalSalesAmount = (userInDb.totalSalesAmount || 0) + (prod.price * qty);
+                }
+            }
+
+            appData.sales.unshift(newSale);
+            saveState();
+
+            closeAllModals();
+            renderInventory();
+            renderSales();
+            renderDashboard();
+            renderStatistics();
+            renderStoreCatalog();
+
+            showToast(`Venta #${newSale.id} concretada`, "success");
+            viewSaleTicket(newSale.id);
+        }
+
+        function viewSaleTicket(saleId) {
+            const sale = appData.sales.find(s => s.id === saleId);
+            if (!sale) return;
+
+            const modal = document.getElementById("ticketModal");
+            const container = document.getElementById("ticketContent");
+            if (!modal || !container) return;
+
+            let itemRows = "";
+            sale.items.forEach(it => {
+                itemRows += `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;">
+                        <span>${it.qty}x ${it.name}</span>
+                        <span>${formatCurrency(it.price * it.qty)}</span>
+                    </div>
+                `;
+            });
+
+            const tax = Math.round(sale.total * 0.16);
+            const sub = sale.total - tax;
+
+            container.innerHTML = `
+                <div style="background:#fff; border:1px dashed #ccc; border-radius:8px; padding:1.25rem; font-family:'Inter', sans-serif;">
+                    <div style="text-align:center; border-bottom:1px dashed #ddd; padding-bottom:10px; margin-bottom:10px;">
+                        <h2 style="font-size:18px; font-weight:800; letter-spacing:-0.5px;">MOBILEZONE S.A. DE C.V.</h2>
+                        <div style="font-size:11px; color:#777; margin-top:4px;">
+                            ${sale.branch}<br>
+                            FOLIO: #${sale.id} · ${sale.date}
+                        </div>
+                    </div>
+                    <div style="font-size:12px; margin-bottom:10px; line-height:1.4;">
+                        <strong>Cliente:</strong> ${sale.customer}<br>
+                        <strong>Atendió:</strong> ${sale.seller}<br>
+                        <strong>Pago:</strong> ${sale.paymentMethod}
+                    </div>
+                    <div style="border-top:1px dashed #ddd; border-bottom:1px dashed #ddd; padding:8px 0; margin-bottom:10px;">
+                        ${itemRows}
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px; color:#666;">
+                        <span>Subtotal:</span>
+                        <span>${formatCurrency(sub)}</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px; color:#666;">
+                        <span>IVA (16%):</span>
+                        <span>${formatCurrency(tax)}</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:16px; font-weight:800; border-top:1px solid #111; padding-top:6px;">
+                        <span>TOTAL:</span>
+                        <span>${formatCurrency(sale.total)}</span>
+                    </div>
+                    <div style="text-align:center; font-size:11px; color:#888; margin-top:15px; border-top:1px dashed #ddd; padding-top:8px;">
+                        ¡Gracias por tu compra en MobileZone!<br>
+                        Garantía oficial de 1 año con fabricante.
+                    </div>
+                </div>
+            `;
+            modal.classList.add("active");
+        }
+
+        // ----------------------------------------------------
+        // 7. ESTADÍSTICAS Y CONSULTAS DINÁMICAS (CHART.JS)
+        // ----------------------------------------------------
+        let chartSales = null;
+        let chartBranches = null;
+        let chartBrands = null;
+
+        function renderStatistics() {
+            initStatisticsControls();
+            updateStatisticsSummary();
+            updateStatisticsCharts();
+        }
+
+        function initStatisticsControls() {
+            const periodBtns = document.querySelectorAll(".admin-period-btn");
+            periodBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    periodBtns.forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    appData.statsQuery.period = btn.getAttribute("data-period");
+                    updateStatisticsSummary();
+                    updateStatisticsCharts();
+                });
+            });
+
+            const branchSelect = document.getElementById("statBranchSelect");
+            if (branchSelect) {
+                branchSelect.addEventListener("change", (e) => {
+                    appData.statsQuery.branch = e.target.value;
+                    updateStatisticsSummary();
+                    updateStatisticsCharts();
+                });
+            }
+        }
+
+        function updateStatisticsSummary() {
+            const period = appData.statsQuery.period;
+            const branch = appData.statsQuery.branch;
+
+            let multiplier = 1;
+            let periodText = "Mensual";
+            if (period === "daily") { multiplier = 0.08; periodText = "Hoy (Diaria)"; }
+            else if (period === "weekly") { multiplier = 0.28; periodText = "Semanal"; }
+            else if (period === "monthly") { multiplier = 1.0; periodText = "Mensual"; }
+            else if (period === "annual") { multiplier = 8.5; periodText = "Anual"; }
+
+            let baseCompleted = appData.sales.filter(s => s.status === "Completada");
+            if (branch !== "ALL") baseCompleted = baseCompleted.filter(s => s.branch === branch);
+
+            let baseSum = baseCompleted.reduce((acc, s) => acc + s.total, 0) || 30000;
+            const estSales = Math.round(baseSum * multiplier);
+            const estOrders = Math.max(1, Math.round(baseCompleted.length * multiplier));
+            const estAvg = Math.round(estSales / estOrders);
+            const estMargin = Math.round(estSales * 0.28);
+
+            const lbl = document.getElementById("statPeriodLabel");
+            if (lbl) lbl.textContent = `Consulta: ${periodText} · ${branch === 'ALL' ? 'Todas las Sucursales' : branch}`;
+
+            const revEl = document.getElementById("statTotalRev");
+            const ordEl = document.getElementById("statOrdersCount");
+            const avgEl = document.getElementById("statAvgTicket");
+            const marEl = document.getElementById("statEstMargin");
+
+            if (revEl) revEl.textContent = formatCurrency(estSales);
+            if (ordEl) ordEl.textContent = `${estOrders} ventas`;
+            if (avgEl) avgEl.textContent = formatCurrency(estAvg);
+            if (marEl) marEl.textContent = formatCurrency(estMargin);
+        }
+
+        function updateStatisticsCharts() {
+            if (typeof Chart === "undefined") return;
+
+            const period = appData.statsQuery.period;
+            const branch = appData.statsQuery.branch;
+
+            let labels = [];
+            let dataPoints = [];
+
+            if (period === "daily") {
+                labels = ["09:00", "12:00", "15:00", "18:00", "21:00"];
+                dataPoints = [15000, 38000, 42000, 68000, 24000];
+            } else if (period === "weekly") {
+                labels = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+                dataPoints = [42000, 58000, 61000, 79000, 115000, 148000, 92000];
+            } else if (period === "monthly") {
+                labels = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+                dataPoints = [180000, 195000, 220000, 210000, 260000, 290000, 310000, 340000, 385000, 360000, 420000, 510000];
+            } else {
+                labels = ["2023", "2024", "2025", "2026"];
+                dataPoints = [2100000, 2850000, 3650000, 4420000];
+            }
+
+            if (branch !== "ALL") {
+                dataPoints = dataPoints.map(v => Math.round(v * 0.35));
+            }
+
+            // 1. Chart Evolución
+            const ctxSales = document.getElementById("chartSalesEvolution");
+            if (ctxSales) {
+                if (chartSales) chartSales.destroy();
+                chartSales = new Chart(ctxSales, {
+                    type: "line",
+                    data: {
+                        labels,
+                        datasets: [{
+                            label: "Ingresos ($ MXN)",
+                            data: dataPoints,
+                            borderColor: "#111111",
+                            backgroundColor: "rgba(17, 17, 17, 0.05)",
+                            borderWidth: 2.5,
+                            fill: true,
+                            tension: 0.3,
+                            pointBackgroundColor: "#111111",
+                            pointRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { grid: { color: "#eeeeee" }, ticks: { callback: v => "$" + (v >= 1000 ? (v / 1000) + "k" : v) } },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            }
+
+            // 2. Chart Sucursales
+            const ctxBranches = document.getElementById("chartBranchDistribution");
+            if (ctxBranches) {
+                if (chartBranches) chartBranches.destroy();
+                chartBranches = new Chart(ctxBranches, {
+                    type: "doughnut",
+                    data: {
+                        labels: ["Centro", "Plaza Norte", "Galerías Sur", "Online"],
+                        datasets: [{
+                            data: [38, 27, 18, 17],
+                            backgroundColor: ["#111111", "#444444", "#888888", "#cccccc"],
+                            borderWidth: 2,
+                            borderColor: "#ffffff"
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: "bottom", labels: { boxWidth: 10, font: { size: 11 } } } },
+                        cutout: "70%"
+                    }
+                });
+            }
+
+            // 3. Chart Marcas
+            const ctxBrands = document.getElementById("chartTopCategories");
+            if (ctxBrands) {
+                if (chartBrands) chartBrands.destroy();
+                chartBrands = new Chart(ctxBrands, {
+                    type: "bar",
+                    data: {
+                        labels: ["Apple", "Samsung", "Xiaomi", "Motorola", "Accesorios"],
+                        datasets: [{
+                            data: [64, 48, 35, 29, 92],
+                            backgroundColor: "#111111",
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: "#eeeeee" } },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            }
+        }
+
+        // ----------------------------------------------------
+        // 8. DASHBOARD GENERAL Y USUARIOS
+        // ----------------------------------------------------
+        function renderDashboard() {
+            const completed = appData.sales.filter(s => s.status === "Completada");
+            const todayTotal = completed.reduce((acc, s) => acc + s.total, 0);
+            const lowStockCount = appData.products.filter(p => p.stock <= p.minStock).length;
+
+            const salesEl = document.getElementById("dashKpiTotalSales");
+            const ordEl = document.getElementById("dashKpiTotalOrders");
+            const lowEl = document.getElementById("dashKpiLowStock");
+
+            if (salesEl) salesEl.textContent = formatCurrency(todayTotal);
+            if (ordEl) ordEl.textContent = completed.length;
+            if (lowEl) lowEl.textContent = lowStockCount;
+
+            const recentBody = document.getElementById("dashboardRecentOrdersBody");
+            if (recentBody) {
+                recentBody.innerHTML = "";
+                appData.sales.slice(0, 5).forEach(s => {
+                    let badgeClass = s.status === "Completada" ? "mz-badge-success" : (s.status === "Pendiente" ? "mz-badge-warning" : "mz-badge-danger");
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td><strong>#${s.id}</strong></td>
+                        <td>${s.customer}</td>
+                        <td><small>${s.branch}</small></td>
+                        <td><strong>${formatCurrency(s.total)}</strong></td>
+                        <td><span class="mz-badge ${badgeClass}">${s.status}</span></td>
+                        <td><button class="btn-mz btn-mz-secondary btn-mz-sm" onclick="viewSaleTicket('${s.id}')"><i class="fa-solid fa-receipt"></i></button></td>
+                    `;
+                    recentBody.appendChild(tr);
+                });
+            }
+
+            const lowList = document.getElementById("dashboardLowStockList");
+            if (lowList) {
+                lowList.innerHTML = "";
+                const critical = appData.products.filter(p => p.stock <= p.minStock).slice(0, 4);
+                if (critical.length === 0) {
+                    lowList.innerHTML = `<p style="color:#059669; font-size:13px;"><i class="fa-solid fa-check"></i> Stock en niveles saludables.</p>`;
+                } else {
+                    critical.forEach(p => {
+                        const row = document.createElement("div");
+                        row.className = "admin-branch-row";
+                        row.innerHTML = `
+                            <div class="admin-branch-info">
+                                <img src="${p.image}" style="width:36px; height:36px; border-radius:6px; object-fit:cover; border:1px solid #eee;" onerror="this.src='https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300'">
+                                <div>
+                                    <div class="admin-branch-name">${p.name}</div>
+                                    <div class="admin-branch-sub">${p.branch} · SKU: ${p.sku}</div>
+                                </div>
+                            </div>
+                            <div class="admin-branch-num">
+                                <span class="mz-badge ${p.stock === 0 ? 'mz-badge-danger' : 'mz-badge-warning'}">${p.stock} disp.</span>
+                                <div><button class="btn-mz btn-mz-secondary btn-mz-sm" style="margin-top:4px;" onclick="adjustProductStock('${p.id}', 10)">+10 Reabastecer</button></div>
+                            </div>
+                        `;
+                        lowList.appendChild(row);
+                    });
+                }
+            }
+        }
+
+        function renderUsers() {
+            const tbody = document.getElementById("usersTableBody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+
+            const isAdmin = appData.currentRole === "ADMIN";
+
+            appData.users.forEach(u => {
+                let badgeClass = u.role === "ADMIN" ? "mz-badge-danger" : (u.role === "VENDEDOR" ? "mz-badge-success" : "mz-badge-warning");
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <div style="width:32px; height:32px; border-radius:50%; background:#111; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px;">${u.name.charAt(0)}</div>
+                            <div>
+                                <strong>${u.name}</strong><br>
+                                <small style="color:#777;">${u.email}</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td><span class="mz-badge ${badgeClass}">${u.role}</span></td>
+                    <td><span>${u.branch}</span></td>
+                    <td><code>${isAdmin ? (u.password || 'admin123') : '••••••••'}</code></td>
+                    <td><strong>${formatCurrency(u.totalSalesAmount)}</strong> (${u.salesCount} ventas)</td>
+                    <td><span class="mz-badge mz-badge-neutral">${u.status}</span></td>
+                    <td>
+                        ${isAdmin ? `<button class="btn-mz btn-mz-secondary btn-mz-sm" onclick="editUser('${u.id}')"><i class="fa-solid fa-user-pen"></i> Editar</button>` : '<small style="color:#aaa;">Solo lectura</small>'}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openNewUserModal() {
+            if (appData.currentRole !== "ADMIN") {
+                showToast("Solo un Administrador puede crear nuevos usuarios.", "warning");
+                return;
+            }
+            const modal = document.getElementById("userModal");
+            const form = document.getElementById("userForm");
+            if (!modal || !form) return;
+            form.reset();
+            document.getElementById("userIdInput").value = "";
+            document.getElementById("modalUserTitle").textContent = "Registrar Colaborador";
+            modal.classList.add("active");
+        }
+
+        function editUser(id) {
+            if (appData.currentRole !== "ADMIN") {
+                showToast("Solo un Administrador puede modificar permisos de usuario.", "warning");
+                return;
+            }
+            const user = appData.users.find(u => u.id === id);
+            if (!user) return;
+            document.getElementById("userIdInput").value = user.id;
+            document.getElementById("userNameInput").value = user.name;
+            document.getElementById("userEmailInput").value = user.email;
+            document.getElementById("userRoleSelect").value = user.role;
+            document.getElementById("userBranchSelect").value = user.branch;
+            document.getElementById("userStatusSelect").value = user.status;
+            document.getElementById("userPasswordInput").value = user.password || "admin123";
+            document.getElementById("modalUserTitle").textContent = "Editar Colaborador";
+            document.getElementById("userModal")?.classList.add("active");
+        }
+
+        function saveUserFromForm(e) {
+            e.preventDefault();
+            const id = document.getElementById("userIdInput").value;
+            const name = document.getElementById("userNameInput").value.trim();
+            const email = document.getElementById("userEmailInput").value.trim();
+            const role = document.getElementById("userRoleSelect").value;
+            const branch = document.getElementById("userBranchSelect").value;
+            const status = document.getElementById("userStatusSelect").value;
+            const password = document.getElementById("userPasswordInput").value.trim() || "123456";
+
+            if (id) {
+                const u = appData.users.find(user => user.id === id);
+                if (u) {
+                    Object.assign(u, { name, email, role, branch, status, password });
+                    showToast("Usuario actualizado exitosamente", "success");
+                }
+            } else {
+                appData.users.push({
+                    id: "usr-" + Date.now(),
+                    name, email, role, branch, salesCount: 0, totalSalesAmount: 0, status, password
+                });
+                showToast(`Usuario ${name} registrado como ${role}`, "success");
+            }
+
+            saveState();
+            closeAllModals();
+            renderUsers();
+            if (currentAdminUser && currentAdminUser.id === id) {
+                currentAdminUser.name = name;
+                currentAdminUser.role = role;
+                currentAdminUser.branch = branch;
+                currentAdminUser.password = password;
+                applyActiveAdminSessionUI();
+            }
+        }
+
+        // ----------------------------------------------------
+        // 9. NAVEGACIÓN Y EVENTOS GENERALES
+        // ----------------------------------------------------
+        function initAdminNav() {
+            const navBtns = document.querySelectorAll(".admin-nav-btn");
+            const panels = document.querySelectorAll(".admin-view-panel");
+
+            navBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const target = btn.getAttribute("data-view");
+                    if (!target) return;
+
+                    navBtns.forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+
+                    panels.forEach(p => {
+                        if (p.id === target) p.classList.add("active");
+                        else p.classList.remove("active");
+                    });
+
+                    if (target === "view-statistics") {
+                        setTimeout(updateStatisticsCharts, 150);
+                    }
+
+                    document.querySelector(".admin-sidebar")?.classList.remove("open");
+                });
+            });
+
+            const mobileBtn = document.getElementById("adminMobileBtn");
+            const sidebar = document.querySelector(".admin-sidebar");
+            if (mobileBtn && sidebar) {
+                mobileBtn.addEventListener("click", () => sidebar.classList.toggle("open"));
+            }
+        }
+
+        function initAdminModals() {
+            document.querySelectorAll(".mz-modal-overlay").forEach(overlay => {
+                overlay.addEventListener("click", (e) => {
+                    if (e.target === overlay) closeAllModals();
+                });
+            });
+
+            document.getElementById("productForm")?.addEventListener("submit", saveProductFromForm);
+            document.getElementById("newSaleForm")?.addEventListener("submit", registerNewSale);
+
+            document.getElementById("saleProductSelect")?.addEventListener("change", updateSaleModalTotals);
+            document.getElementById("saleQty")?.addEventListener("input", updateSaleModalTotals);
+
+            document.getElementById("invSearchInput")?.addEventListener("input", renderInventory);
+            document.getElementById("invCategorySelect")?.addEventListener("change", renderInventory);
+            document.getElementById("invStatusSelect")?.addEventListener("change", renderInventory);
+
+            document.getElementById("salesSearchInput")?.addEventListener("input", renderSales);
+            document.getElementById("salesBranchSelect")?.addEventListener("change", renderSales);
+            document.getElementById("salesStatusSelect")?.addEventListener("change", renderSales);
+        }
+
+        function closeAllModals() {
+            document.querySelectorAll(".mz-modal-overlay").forEach(m => m.classList.remove("active"));
+        }
+
+        function exportSalesToCSV() {
+            let csv = "data:text/csv;charset=utf-8,ID,Fecha,Cliente,Sucursal,Vendedor,Pago,Total,Estado\n";
+            appData.sales.forEach(s => {
+                csv += `${s.id},"${s.date}","${s.customer}","${s.branch}","${s.seller}","${s.paymentMethod}",${s.total},${s.status}\n`;
+            });
+            const encoded = encodeURI(csv);
+            const a = document.createElement("a");
+            a.setAttribute("href", encoded);
+            a.setAttribute("download", `Reporte_Ventas_MobileZone_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showToast("Reporte de ventas exportado en CSV", "success");
+        }
+
+        // SISTEMA FLOTANTE DE NOTIFICACIONES (TOAST)
+        function showToast(message, type = "info") {
+            const container = document.getElementById("toastContainer");
+            if (!container) return;
+
+            const toast = document.createElement("div");
+            toast.className = `toast ${type}`;
+
+            let icon = "fa-circle-info";
+            if (type === "success") icon = "fa-circle-check";
+            else if (type === "warning") icon = "fa-triangle-exclamation";
+            else if (type === "danger") icon = "fa-circle-xmark";
+
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                toast.style.transform = "translateX(50px)";
+                toast.style.transition = "all 0.3s ease";
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+    </script>
+
+</body>
+</html>
